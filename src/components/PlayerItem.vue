@@ -53,7 +53,7 @@ const handlePlayerSaidGabo = (playerName: string) => {
   justify-content: space-between;
 }
 .name {
-  color: white;
+  color: black;
 }
 .bottom {
   display: flex;
@@ -75,5 +75,9 @@ const handlePlayerSaidGabo = (playerName: string) => {
 }
 .saidGabo {
   opacity: 1;
+}
+.total-points,
+.round-points {
+  color: black;
 }
 </style>

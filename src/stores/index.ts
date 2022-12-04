@@ -74,5 +74,22 @@ export const useMainStore = defineStore({
         saidGabo: true,
       });
     },
+    endRound() {
+      const currentRound = this.rounds[this.currentRound];
+      const round = new Map(
+        this.players.map((player) => {
+          return [player.name, { points: 0, saidGabo: false }];
+        })
+      );
+      this.rounds.push(round);
+      this.players = this.players.map((player) => {
+        return {
+          ...player,
+          totalPoints:
+            player.totalPoints + currentRound.get(player.name)!.points,
+        };
+      });
+      this.currentRound = this.currentRound + 1;
+    },
   },
 });

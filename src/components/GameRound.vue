@@ -15,7 +15,8 @@ export default defineComponent({
       store.setPlayerRoundGabo(playerName);
     },
     handleEndRoundClick() {
-      console.log("clicked end round");
+      const store = useMainStore();
+      store.endRound();
     },
   },
   mounted() {
