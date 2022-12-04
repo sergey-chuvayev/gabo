@@ -12,6 +12,7 @@ const router = createRouter({
     {
       path: "/game",
       name: "game",
+      redirect: "/game/registration",
       children: [
         {
           path: "registration",

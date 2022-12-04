@@ -5,16 +5,22 @@ import type { Player } from "../models/player.model";
 
 type Props = {
   player: Player;
+  points: number;
+  saidGabo: boolean;
 };
 defineProps<Props>();
+const emit = defineEmits(["onPlayerSaidGabo"]);
+
+const store = useMainStore();
 
 const onIncrementPoints = (playersName: string) => {
-  const store = useMainStore();
   store.incrementPlayerRoundPoints(playersName);
 };
 const onDecrementPoints = (playersName: string) => {
-  const store = useMainStore();
   store.decrementPlayerRoundPoints(playersName);
+};
+const handlePlayerSaidGabo = (playerName: string) => {
+  emit("onPlayerSaidGabo", playerName);
 };
 </script>
 
@@ -27,10 +33,16 @@ const onDecrementPoints = (playersName: string) => {
     <div class="bottom">
       <div class="counter">
         <button @click="onDecrementPoints(player.name)">–</button>
-        <div class="round-points">{{ player.roundPoints }} round points</div>
+        <div class="round-points">{{ points }} round points</div>
         <button @click="onIncrementPoints(player.name)">+</button>
       </div>
-      <button class="button">GABO!</button>
+      <button
+        :class="saidGabo ? 'saidGabo' : ''"
+        class="button"
+        @click="handlePlayerSaidGabo(player.name)"
+      >
+        GABO!
+      </button>
     </div>
   </div>
 </template>
@@ -57,5 +69,11 @@ const onDecrementPoints = (playersName: string) => {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+}
+.button {
+  opacity: 0.1;
+}
+.saidGabo {
+  opacity: 1;
 }
 </style>
