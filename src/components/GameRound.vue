@@ -2,15 +2,20 @@
 import { defineComponent } from "vue";
 import { useMainStore } from "@/stores";
 import PlayerItem from "./PlayerItem.vue";
+import ButtonRedesigned from "./ButtonRedesigned.vue";
 
 export default defineComponent({
   components: {
     PlayerItem,
+    ButtonRedesigned,
   },
   methods: {
     onPlayerSaidGabo(playerName: string) {
       const store = useMainStore();
       store.setPlayerRoundGabo(playerName);
+    },
+    handleEndRoundClick() {
+      console.log("clicked end round");
     },
   },
   mounted() {
@@ -49,7 +54,9 @@ export default defineComponent({
         />
       </div>
     </div>
-    <button class="end-round">End round</button>
+    <ButtonRedesigned @click="handleEndRoundClick" class="end-round">
+      End round
+    </ButtonRedesigned>
   </div>
 </template>
 
