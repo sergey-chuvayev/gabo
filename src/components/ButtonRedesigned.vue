@@ -9,6 +9,8 @@
 <style scoped>
 .button {
   border-radius: 8px;
-  background-color: red;
+  font-family: 'Milonga', cursive;
+  background: var(--color-dark);
+  color: var(--color-light);
 }
 </style>
