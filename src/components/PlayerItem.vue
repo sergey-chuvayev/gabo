@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { useMainStore } from "@/stores";
-import { defineProps, computed } from "vue";
+import { defineProps } from "vue";
 import type { Player } from "../models/player.model";
 
 type Props = {
   player: Player;
 };
-const props = defineProps<Props>();
+defineProps<Props>();
 
 const onIncrementPoints = (playersName: string) => {
   const store = useMainStore();
@@ -16,14 +16,6 @@ const onDecrementPoints = (playersName: string) => {
   const store = useMainStore();
   store.decrementPlayerRoundPoints(playersName);
 };
-
-computed(() => {
-  console.log('asdasd');
-
-  return {
-    player: props.player,
-  };
-});
 </script>
 
 <template>

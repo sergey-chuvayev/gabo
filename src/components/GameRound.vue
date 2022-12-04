@@ -7,11 +7,11 @@ export default defineComponent({
   components: {
     PlayerItem,
   },
-  data() {
-    const store = useMainStore();
-    return {
-      players: store.players,
-    };
+  computed: {
+    players() {
+      const store = useMainStore();
+      return store.players;
+    },
   },
 });
 </script>
@@ -35,12 +35,14 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
 }
+
 .players-list {
   margin-top: 16px;
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
+
 .end-round {
   margin-top: 64px;
 }
