@@ -1,28 +1,23 @@
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script setup lang="ts">
+import router from "@/router";
+import { ref } from "vue";
 import { useMainStore } from "../stores";
 
-export default defineComponent({
-  data() {
-    return {
-      players: new Array<string>(),
-      name: ref(""),
-    };
-  },
-  methods: {
-    addPlayer() {
-      if (this.name !== "") {
-        this.players = [...this.players, this.name];
-        this.name = "";
-      }
-    },
-    startGame() {
-      const store = useMainStore();
-      store.createPlayers(this.players);
-      this.$router.push("/game/round");
-    },
-  },
-});
+let players = ref<string[]>([]);
+let name = ref<string>("");
+
+const addPlayer = () => {
+  if (name.value !== "") {
+    players.value = [...players.value, name.value];
+    name.value = "";
+  }
+};
+
+const startGame = () => {
+  const store = useMainStore();
+  store.createPlayers(players.value);
+  router.push("/game/round");
+};
 </script>
 
 <template>
@@ -41,9 +36,9 @@ export default defineComponent({
   </div>
 </template>
 
-<style>
+<style scoped>
 .container {
-  width: 400px;
+  width: 320px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
