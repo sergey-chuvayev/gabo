@@ -1,12 +1,14 @@
+import { defineStore } from "pinia";
 import type { Player } from "@/models/player.model";
 import type { Round } from "@/models/round.model";
-import { defineStore } from "pinia";
 
 export type RootState = {
   players: Player[];
   rounds: Round[];
   currentRound: number;
 };
+
+const TOTAL_GAME_POINTS = 100;
 
 const defaultPlayers: Player[] = [
   {
@@ -75,21 +77,30 @@ export const useMainStore = defineStore({
       });
     },
     endRound() {
+      // UPDATE PLAYERS TOTAL POINTS
       const currentRound = this.rounds[this.currentRound];
+      this.players = this.players.map((player) => {
+        return {
+          ...player,
+          totalPoints:
+            // APPLY THE GABO RULES:
+            // 1. IF PLAYER WITH THE MINIMUM POINTS SAID GABO APPLY FORMULA: TOTAL POINTS - ROUND POINTS - 5
+            // 2. IF PLAYER WITH NOT MINIMUM POINTS SAID GABO APPLY FORMULA: TOTAL POINTS + 15
+            // 3. IF SOME PLAYER IS OVER 100 (TOTAL_GAME_POINTS) POINTS, GAME IS OVER
+            // 4. IF SOME PLAYER HAS EXACTLY 100 POINTS, APPLY FORMULA: TOTAL POINTS + ROUND POINTS - 50 (THIS CAN HAPPEN ONES IN THE GAME)
+            // USE THE FUNCTION WITH ALL RULES HERE:
+            player.totalPoints + currentRound.get(player.name)!.points,
+        };
+      });
+
+      // SET NEXT ROUND
+      this.currentRound = this.currentRound + 1;
       const round = new Map(
         this.players.map((player) => {
           return [player.name, { points: 0, saidGabo: false }];
         })
       );
       this.rounds.push(round);
-      this.players = this.players.map((player) => {
-        return {
-          ...player,
-          totalPoints:
-            player.totalPoints + currentRound.get(player.name)!.points,
-        };
-      });
-      this.currentRound = this.currentRound + 1;
     },
   },
 });
