@@ -1,45 +1,21 @@
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { computed } from "vue";
 import { useMainStore } from "@/stores";
 import PlayerItem from "./PlayerItem.vue";
 import ButtonRedesigned from "./ButtonRedesigned.vue";
 
-export default defineComponent({
-  components: {
-    PlayerItem,
-    ButtonRedesigned,
-  },
-  methods: {
-    onPlayerSaidGabo(playerName: string) {
-      const store = useMainStore();
-      store.setPlayerRoundGabo(playerName);
-    },
-    handleEndRoundClick() {
-      const store = useMainStore();
-      store.endRound();
-    },
-  },
-  mounted() {
-    const store = useMainStore();
-    if (store.players.length === 0) {
-      this.$router.push("/game");
-    }
-  },
-  computed: {
-    players() {
-      const store = useMainStore();
-      return store.players;
-    },
-    rounds() {
-      const store = useMainStore();
-      return store.rounds;
-    },
-    currentRound() {
-      const store = useMainStore();
-      return store.currentRound;
-    },
-  },
-});
+const store = useMainStore();
+
+const players = computed(() => store.players);
+const rounds = computed(() => store.rounds);
+const currentRound = computed(() => store.currentRound);
+
+const onPlayerSaidGabo = (playerName: string) => {
+  store.setPlayerRoundGabo(playerName);
+};
+const handleEndRoundClick = () => {
+  store.endRound();
+};
 </script>
 
 <template>
@@ -61,9 +37,9 @@ export default defineComponent({
   </div>
 </template>
 
-<style>
+<style scoped>
 .container {
-  width: 400px;
+  width: 320px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
