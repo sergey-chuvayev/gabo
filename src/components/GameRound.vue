@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref, watch } from "vue";
 import { useMainStore } from "@/stores";
 import PlayerItem from "./PlayerItem.vue";
 import ButtonRedesigned from "./ButtonRedesigned.vue";
@@ -10,11 +10,35 @@ const players = computed(() => store.players);
 const rounds = computed(() => store.rounds);
 const currentRound = computed(() => store.currentRound);
 
+let somePlayersHaveZeroPoints = ref(false);
+let somePlayersHaveNoGabo = ref(false);
+
 const onPlayerSaidGabo = (playerName: string) => {
   store.setPlayerRoundGabo(playerName);
 };
 const handleEndRoundClick = () => {
-  store.endRound();
+  if (checkSomePlayersHaveZeroPoints() || checkSomePlayersHaveNoGabo()) {
+    somePlayersHaveZeroPoints.value = checkSomePlayersHaveZeroPoints();
+    somePlayersHaveNoGabo.value = checkSomePlayersHaveNoGabo();
+  } else {
+    store.endRound();
+  }
+};
+
+watch(currentRound, () => {
+  somePlayersHaveZeroPoints.value = false;
+  somePlayersHaveNoGabo.value = false;
+});
+
+const checkSomePlayersHaveZeroPoints = () => {
+  return [...rounds.value[currentRound.value].values()].some(
+    (value) => value.points === 0
+  );
+};
+const checkSomePlayersHaveNoGabo = () => {
+  return ![...rounds.value[currentRound.value].values()].find(
+    (value) => value.saidGabo
+  );
 };
 </script>
 
@@ -34,6 +58,9 @@ const handleEndRoundClick = () => {
     <ButtonRedesigned @click="handleEndRoundClick" class="end-round">
       End round
     </ButtonRedesigned>
+    <div v-if="somePlayersHaveZeroPoints || somePlayersHaveNoGabo">
+      You should first set players' points and who said "gabo"
+    </div>
   </div>
 </template>
 
