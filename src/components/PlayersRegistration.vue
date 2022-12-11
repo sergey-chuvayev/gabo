@@ -24,13 +24,15 @@ const startGame = () => {
 <template>
   <div class="container">
     <h1>Create players</h1>
-    <div class="input">
-      <label for="name">Enter {{ players.length + 1 }} player's name</label>
-      <input type="text" v-model="name" placeholder="Player's name" />
-    </div>
-    <div class="buttons">
-      <button @click="addPlayer">Next player</button>
-    </div>
+    <form v-on:submit.prevent="addPlayer">
+      <div class="input">
+        <label for="name">Enter {{ players.length + 1 }} player's name</label>
+        <input type="text" v-model="name" placeholder="Player's name" />
+      </div>
+      <div class="buttons">
+        <button type="submit">Next player</button>
+      </div>
+    </form>
     <button v-if="players.length >= 2" @click="startGame" class="start-game">
       Start game
     </button>
