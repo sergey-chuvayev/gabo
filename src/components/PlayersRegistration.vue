@@ -24,6 +24,22 @@ const addPlayer = () => {
   }
 };
 
+const getNumberWord = (num: number) => {
+  const words = [
+    "premier",
+    "deuxième",
+    "troisième",
+    "quatrième",
+    "cinquième",
+    "sixième",
+    "septième",
+    "huitième",
+    "neuvième",
+    "dixième",
+  ];
+  return words[num];
+};
+
 const startGame = () => {
   addPlayer();
   const store = useMainStore();
@@ -37,11 +53,13 @@ const startGame = () => {
     <h1>Create players</h1>
     <form v-on:submit.prevent="addPlayer">
       <div class="input">
-        <label for="name">Enter {{ players.length + 1 }} player's name</label>
+        <label for="name"
+          >Entrer le nom du {{ getNumberWord(players.length) }} joueur</label
+        >
         <input type="text" v-model="name" placeholder="Player's name" />
       </div>
       <div class="buttons">
-        <button v-if="players.length < MAX_PLAYERS - 1" type="submit">
+        <button v-if="players.length <= MAX_PLAYERS - 2" type="submit">
           Next player
         </button>
       </div>
