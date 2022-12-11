@@ -1,5 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ArticleArea from "../components/ArticleArea.vue";
+</script>
 
 <template>
-  <main>Home</main>
+  <ArticleArea> home </ArticleArea>
 </template>

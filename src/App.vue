@@ -31,6 +31,7 @@ const closeMenu = () => {
 .menu-btn {
   z-index: calc(var(--menu-z) - 1);
   position: absolute;
+  padding: 0;
   top: 16px;
   left: 32px;
   background: none;
