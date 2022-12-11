@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import type { Player } from "@/models/player.model";
 import type { Round } from "@/models/round.model";
+import router from '@/router';
 
 export type RootState = {
   players: Player[];
@@ -9,7 +10,7 @@ export type RootState = {
   hasPointsReductionHappened: boolean;
 };
 
-const TOTAL_GAME_POINTS = 20;
+const TOTAL_GAME_POINTS = 50;
 
 const defaultPlayers: Player[] = [
   {
@@ -32,8 +33,8 @@ export const useMainStore = defineStore({
   id: "mainStore",
   state: () =>
     ({
-      players: defaultPlayers,
-      rounds: defaultRounds,
+      players: [],
+      rounds: [],
       currentRound: 0,
       hasPointsReductionHappened: false,
     } as RootState),
@@ -82,18 +83,21 @@ export const useMainStore = defineStore({
       });
     },
     endRound() {
-      // UPDATE PLAYERS TOTAL POINTS
       const currentRound = this.rounds[this.currentRound];
       this.players = this.players.map((player) => {
         return {
           ...player,
           totalPoints: getPlayerTotalPoints(player, currentRound),
-          // APPLY THE GABO RULES:
-
-          // 3. IF SOME PLAYER IS OVER 100 (TOTAL_GAME_POINTS) POINTS, GAME IS OVER
-          // USE THE FUNCTION WITH ALL RULES HERE:
         };
       });
+
+      // GAME IS OVER
+      if (
+        this.players.some((player) => player.totalPoints > TOTAL_GAME_POINTS)
+      ) {
+        router.push("/game/results");
+        return;
+      }
 
       // SET NEXT ROUND
       this.currentRound = this.currentRound + 1;

@@ -16,6 +16,10 @@ const router = createRouter({
           path: "round",
           component: () => import("../views/RoundView.vue"),
         },
+        {
+          path: "results",
+          component: () => import("../views/ResultsView.vue"),
+        },
       ],
     },
   ],
