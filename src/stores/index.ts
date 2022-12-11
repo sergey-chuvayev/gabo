@@ -6,9 +6,10 @@ export type RootState = {
   players: Player[];
   rounds: Round[];
   currentRound: number;
+  hasPointsReductionHappened: boolean;
 };
 
-const TOTAL_GAME_POINTS = 100;
+const TOTAL_GAME_POINTS = 20;
 
 const defaultPlayers: Player[] = [
   {
@@ -34,8 +35,12 @@ export const useMainStore = defineStore({
       players: defaultPlayers,
       rounds: defaultRounds,
       currentRound: 0,
+      hasPointsReductionHappened: false,
     } as RootState),
   actions: {
+    setHasPointsReductionHappened() {
+      this.hasPointsReductionHappened = true;
+    },
     createPlayers(names: string[]) {
       this.players = names.map((name) => ({
         name,
@@ -82,14 +87,11 @@ export const useMainStore = defineStore({
       this.players = this.players.map((player) => {
         return {
           ...player,
-          totalPoints:
-            // APPLY THE GABO RULES:
-            // 1. IF PLAYER WITH THE MINIMUM POINTS SAID GABO APPLY FORMULA: TOTAL POINTS - ROUND POINTS - 5
-            // 2. IF PLAYER WITH NOT MINIMUM POINTS SAID GABO APPLY FORMULA: TOTAL POINTS + 15
-            // 3. IF SOME PLAYER IS OVER 100 (TOTAL_GAME_POINTS) POINTS, GAME IS OVER
-            // 4. IF SOME PLAYER HAS EXACTLY 100 POINTS, APPLY FORMULA: TOTAL POINTS + ROUND POINTS - 50 (THIS CAN HAPPEN ONES IN THE GAME)
-            // USE THE FUNCTION WITH ALL RULES HERE:
-            player.totalPoints + currentRound.get(player.name)!.points,
+          totalPoints: getPlayerTotalPoints(player, currentRound),
+          // APPLY THE GABO RULES:
+
+          // 3. IF SOME PLAYER IS OVER 100 (TOTAL_GAME_POINTS) POINTS, GAME IS OVER
+          // USE THE FUNCTION WITH ALL RULES HERE:
         };
       });
 
@@ -104,3 +106,53 @@ export const useMainStore = defineStore({
     },
   },
 });
+
+const getPlayerTotalPoints = (player: Player, currentRound: Round) => {
+  const playerWithMinimumPoints = getPlayerWithMinimumPoints(currentRound);
+  const store = useMainStore();
+
+  // IF PLAYER WITH THE MINIMUM POINTS SAID GABO APPLY FORMULA: TOTAL POINTS - ROUND POINTS - 5
+  if (
+    currentRound.get(player.name)!.saidGabo &&
+    playerWithMinimumPoints === player.name
+  ) {
+    return player.totalPoints - currentRound.get(player.name)!.points - 5;
+  }
+
+  // IF PLAYER WITH NOT MINIMUM POINTS SAID GABO APPLY FORMULA: TOTAL POINTS + 15
+  if (
+    currentRound.get(player.name)!.saidGabo &&
+    playerWithMinimumPoints !== player.name
+  ) {
+    return player.totalPoints + 15;
+  }
+
+  // IF SOME PLAYER HAS EXACTLY 100 POINTS, APPLY FORMULA: TOTAL POINTS + ROUND POINTS - 50 (THIS CAN HAPPEN ONES IN THE GAME)
+  if (
+    player.totalPoints + currentRound.get(player.name)!.points ===
+      TOTAL_GAME_POINTS &&
+    !store.hasPointsReductionHappened
+  ) {
+    store.setHasPointsReductionHappened();
+    return player.totalPoints - 50;
+  }
+
+  return player.totalPoints + currentRound.get(player.name)!.points;
+};
+
+const getPlayerWithMinimumPoints = (round: Round) => {
+  const roundArray: [string, { saidGabo: boolean; points: number }][] = [
+    ...round.entries(),
+  ];
+
+  let playerNameWithMinimumPoints = roundArray[0][0];
+  let minimumPoints = roundArray[0][1].points;
+  roundArray.forEach((roundItem) => {
+    if (roundItem[1].points < minimumPoints) {
+      minimumPoints = roundItem[1].points;
+      playerNameWithMinimumPoints = roundItem[0];
+    }
+  });
+
+  return playerNameWithMinimumPoints;
+};
