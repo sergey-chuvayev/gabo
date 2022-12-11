@@ -10,7 +10,6 @@ let name = ref<string>("");
 let error = ref<string>("");
 
 const addPlayer = () => {
-  console.log("players:", players);
   if (players.value.includes(name.value)) {
     error.value = "player with this name has already been registered";
     return;

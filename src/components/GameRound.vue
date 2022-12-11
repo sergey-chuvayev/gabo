@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { computed, ref, watch, onBeforeMount } from "vue";
 import { useMainStore } from "@/stores";
+import router from "@/router";
 import PlayerItem from "./PlayerItem.vue";
 import ButtonRedesigned from "./ButtonRedesigned.vue";
 
@@ -24,6 +25,12 @@ const handleEndRoundClick = () => {
     store.endRound();
   }
 };
+
+onBeforeMount(() => {
+  if (players.value.length === 0) {
+    router.push("/game/registration");
+  }
+});
 
 watch(currentRound, () => {
   somePlayersHaveZeroPoints.value = false;
