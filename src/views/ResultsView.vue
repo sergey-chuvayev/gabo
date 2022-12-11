@@ -18,7 +18,7 @@ const isWinner = (player: Player, players: Player[]) => {
 
 const players: { name: string; totalPoints: number; isWinner: boolean }[] =
   store.players
-    .sort((player) => (player.totalPoints ? 1 : -1))
+    .sort((player1, player2) => player1.totalPoints - player2.totalPoints)
     .map((player) => {
       if (isWinner(player, store.players)) {
         return {
