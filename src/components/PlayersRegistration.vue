@@ -5,11 +5,16 @@ import { useMainStore } from "../stores";
 
 let players = ref<string[]>([]);
 let name = ref<string>("");
+let error = ref<string>("");
+
 
 const addPlayer = () => {
   if (name.value !== "" && name.value.trim() !== "") {
     players.value = [...players.value, name.value];
     name.value = "";
+    error.value = "";
+  } else {
+    error.value = 'playername cannot be empty';
   }
 };
 
@@ -32,6 +37,7 @@ const startGame = () => {
       <div class="buttons">
         <button type="submit">Next player</button>
       </div>
+      <div v-if="error !== ''">{{ error }}</div>
     </form>
     <button v-if="players.length >= 2" @click="startGame" class="start-game">
       Start game
