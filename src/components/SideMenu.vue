@@ -1,75 +1,81 @@
 <script setup lang="ts">
+import { computed } from "vue-demi";
 
-
-export default defineComponent({})
-const closeMenu = () => {
-  console.log(1);
+type Props = {
+  isOpen: boolean;
 };
-const handleBackdropClick = () => {
-  console.log(2);
-}
-</script>
 
+const props = defineProps<Props>();
+const emit = defineEmits(["onClose"]);
+
+const isOpen = computed(() => {
+  return props.isOpen;
+});
+
+const closeMenu = () => {
+  emit("onClose");
+};
+</script>
 
 <template>
   <div class="menu-container" :class="{ 'menu-container--is-visible': isOpen }">
     <ul class="menu-container__list">
-      <li :click="closeMenu()">
-        <a class="menu-container__list__link" routerLink="/">
+      <li>
+        <RouterLink to="/" class="menu-container__list__link">
           Accueil
-        </a>
+        </RouterLink>
       </li>
       <li>
         <div class="menu-container__list__delimiter"></div>
       </li>
-      <li :click="closeMenu()">
-        <a class="menu-container__list__link" routerLink="/rules">
+      <li>
+        <RouterLink to="/rules" class="menu-container__list__link">
           Règles officielles
-        </a>
+        </RouterLink>
       </li>
       <li>
         <div class="menu-container__list__delimiter"></div>
       </li>
-      <li :click="closeMenu()">
-        <a class="menu-container__list__link" routerLink="/variants">
+      <li>
+        <RouterLink to="/variants" class="menu-container__list__link">
           Variantes
-        </a>
+        </RouterLink>
       </li>
       <li>
         <div class="menu-container__list__delimiter"></div>
       </li>
-      <li :click="closeMenu()">
-        <a class="menu-container__list__link" routerLink="/countpoints">
+      <li>
+        <RouterLink to="/game" class="menu-container__list__link">
           Compter les points
-        </a>
+        </RouterLink>
       </li>
       <li>
         <div class="menu-container__list__delimiter"></div>
       </li>
-      <li :click="closeMenu()">
-        <a class="menu-container__list__link" routerLink="/whoarewe">
+      <li>
+        <RouterLink to="/about" class="menu-container__list__link">
           Qui sommes-nous?
-        </a>
+        </RouterLink>
       </li>
-      <li :click="closeMenu()">
-        <a class="menu-container__list__link" routerLink="/writetous">
+      <li>
+        <RouterLink to="/contacts" class="menu-container__list__link">
           Nous écrire
-        </a>
+        </RouterLink>
       </li>
     </ul>
-    <button class="menu-container__backdrop" :click="handleBackdropClick()"></button>
+    <button @click="closeMenu" class="menu-container__backdrop"></button>
   </div>
-
 </template>
 
-<style>
+<style scoped>
 .menu-container {
   position: fixed;
   top: 0;
-  left: -100%;
+  left: 0;
+  transform: translate(-100%, 0);
   width: 100%;
   height: 100%;
-  transition: left ease-in-out 200ms;
+  transition: transform ease-in-out 200ms;
   display: flex;
   z-index: var(--menu-z);
 }
@@ -87,7 +93,7 @@ const handleBackdropClick = () => {
 }
 
 .menu-container--is-visible {
-  left: 0;
+  transform: translate(0, 0);
 }
 
 .menu-container__backdrop {
@@ -109,5 +115,4 @@ const handleBackdropClick = () => {
   height: 20px;
   width: 200px;
 }
-
 </style>

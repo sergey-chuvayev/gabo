@@ -3,13 +3,18 @@
 :root {
   --color-dark: #333333;
   --color-light: #DAC389;
+  --menu-z: 10;
 }
-#app {
-  margin: 0 auto;
-  padding: 2rem;
+
+body {
+  padding: 0;
+  margin: 0;
 }
 
 .app-container {
+  margin: 0 auto;
+  padding: 32px;
+  padding-top: 48px;
   font-weight: normal;
   position: absolute;
   display: flex;
