@@ -7,14 +7,18 @@ let players = ref<string[]>([]);
 let name = ref<string>("");
 let error = ref<string>("");
 
-
 const addPlayer = () => {
+  if (players.value.includes(name.value)) {
+    error.value = "player with this name has already been registered";
+    return;
+  }
+
   if (name.value !== "" && name.value.trim() !== "") {
     players.value = [...players.value, name.value];
     name.value = "";
     error.value = "";
   } else {
-    error.value = 'playername cannot be empty';
+    error.value = "playername cannot be empty";
   }
 };
 
