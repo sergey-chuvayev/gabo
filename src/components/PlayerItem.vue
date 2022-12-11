@@ -28,12 +28,12 @@ const handlePlayerSaidGabo = (playerName: string) => {
   <div class="container">
     <div class="top">
       <div class="name">{{ player.name }}</div>
-      <div class="total-points">{{ player.totalPoints }} total points</div>
+      <div class="total-points">{{ player.totalPoints }} points totaux</div>
     </div>
     <div class="bottom">
       <div class="counter">
         <button @click="onDecrementPoints(player.name)">–</button>
-        <div class="round-points">{{ points }} round points</div>
+        <div class="round-points">{{ points }} points</div>
         <button @click="onIncrementPoints(player.name)">+</button>
       </div>
       <button

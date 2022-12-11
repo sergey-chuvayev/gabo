@@ -51,7 +51,7 @@ const checkSomePlayersHaveNoGabo = () => {
 
 <template>
   <div class="container">
-    <h1>Round {{ currentRound + 1 }}</h1>
+    <h1>Manche {{ currentRound + 1 }}</h1>
     <div class="players-list">
       <div class="player-item" v-for="player in players" :key="player.name">
         <PlayerItem
@@ -63,10 +63,10 @@ const checkSomePlayersHaveNoGabo = () => {
       </div>
     </div>
     <ButtonRedesigned @click="handleEndRoundClick" class="end-round">
-      End round
+      Fin de la manche
     </ButtonRedesigned>
     <div v-if="somePlayersHaveZeroPoints || somePlayersHaveNoGabo">
-      You should first set players' points and who said "gabo"
+      Vous devez indiquer le nombre de points de chaque joueur et désigner qui a prononcé Gabo
     </div>
   </div>
 </template>

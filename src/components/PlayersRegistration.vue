@@ -11,7 +11,7 @@ let error = ref<string>("");
 
 const addPlayer = () => {
   if (players.value.includes(name.value)) {
-    error.value = "player with this name has already been registered";
+    error.value = "Ce nom de joueur est déjà pris";
     return;
   }
 
@@ -20,7 +20,7 @@ const addPlayer = () => {
     name.value = "";
     error.value = "";
   } else {
-    error.value = "playername cannot be empty";
+    error.value = "Le nom du joueur ne peut pas être vide";
   }
 };
 
@@ -50,23 +50,23 @@ const startGame = () => {
 
 <template>
   <div class="container">
-    <h1>Create players</h1>
+    <h1>Ajouter un joueur</h1>
     <form v-on:submit.prevent="addPlayer">
       <div class="input">
         <label for="name"
           >Entrer le nom du {{ getNumberWord(players.length) }} joueur</label
         >
-        <input type="text" v-model="name" placeholder="Player's name" />
+        <input type="text" v-model="name" placeholder="Nom du joueur" />
       </div>
       <div class="buttons">
         <button v-if="players.length <= MAX_PLAYERS - 2" type="submit">
-          Next player
+          Joueur suivant
         </button>
       </div>
       <div v-if="error !== ''">{{ error }}</div>
     </form>
     <button v-if="players.length >= 2" @click="startGame" class="start-game">
-      Start game
+      Commencer la partie
     </button>
   </div>
 </template>
