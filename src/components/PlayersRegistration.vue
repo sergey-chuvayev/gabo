@@ -7,13 +7,14 @@ let players = ref<string[]>([]);
 let name = ref<string>("");
 
 const addPlayer = () => {
-  if (name.value !== "") {
+  if (name.value !== "" && name.value.trim() !== "") {
     players.value = [...players.value, name.value];
     name.value = "";
   }
 };
 
 const startGame = () => {
+  addPlayer();
   const store = useMainStore();
   store.createPlayers(players.value);
   router.push("/game/round");
