@@ -3,11 +3,14 @@ import router from "@/router";
 import { ref } from "vue";
 import { useMainStore } from "../stores";
 
+const MAX_PLAYERS = 10;
+
 let players = ref<string[]>([]);
 let name = ref<string>("");
 let error = ref<string>("");
 
 const addPlayer = () => {
+  console.log("players:", players);
   if (players.value.includes(name.value)) {
     error.value = "player with this name has already been registered";
     return;
@@ -39,7 +42,9 @@ const startGame = () => {
         <input type="text" v-model="name" placeholder="Player's name" />
       </div>
       <div class="buttons">
-        <button type="submit">Next player</button>
+        <button v-if="players.length < MAX_PLAYERS - 1" type="submit">
+          Next player
+        </button>
       </div>
       <div v-if="error !== ''">{{ error }}</div>
     </form>
