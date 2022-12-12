@@ -8,6 +8,7 @@ const MAX_PLAYERS = 10;
 let players = ref<string[]>([]);
 let name = ref<string>("");
 let error = ref<string>("");
+let errNumberOfPlayers = ref<string>("");
 
 const addPlayer = () => {
   if (players.value.includes(name.value)) {
@@ -42,6 +43,11 @@ const getNumberWord = (num: number) => {
 
 const startGame = () => {
   addPlayer();
+  if ( players.value.length < 2 ) {
+    errNumberOfPlayers.value = 'Vous devez être au moins deux joueurs pour jouer';
+    return;
+  }
+  errNumberOfPlayers.value = '';
   const store = useMainStore();
   store.createPlayers(players.value);
   router.push("/game/round");
@@ -65,9 +71,10 @@ const startGame = () => {
       </div>
       <div v-if="error !== ''">{{ error }}</div>
     </form>
-    <button v-if="players.length >= 2" @click="startGame" class="start-game">
+    <button v-if="players.length >= 1" @click="startGame" class="start-game">
       Commencer la partie
     </button>
+    <div v-if="errNumberOfPlayers">{{ errNumberOfPlayers }}</div>
   </div>
 </template>
 
