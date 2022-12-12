@@ -10,7 +10,7 @@ export type RootState = {
   hasPointsReductionHappened: boolean;
 };
 
-const TOTAL_GAME_POINTS = 50;
+const TOTAL_GAME_POINTS = 100;
 
 const defaultPlayers: Player[] = [
   {
