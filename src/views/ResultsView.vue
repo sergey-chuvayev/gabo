@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useMainStore } from "@/stores";
-import { Player } from "../models/player.model";
+import type { Player } from "../models/player.model";
 
 const store = useMainStore();
 
