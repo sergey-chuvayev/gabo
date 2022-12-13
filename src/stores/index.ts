@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import type { Player } from "@/models/player.model";
 import type { Round } from "@/models/round.model";
-import router from '@/router';
+import router from "@/router";
 
 export type RootState = {
   players: Player[];
@@ -87,7 +87,12 @@ export const useMainStore = defineStore({
       this.players = this.players.map((player) => {
         return {
           ...player,
-          totalPoints: getPlayerTotalPoints(player, currentRound),
+          totalPoints: getPlayerTotalPoints(
+            player,
+            currentRound,
+            this.hasPointsReductionHappened,
+            this.setHasPointsReductionHappened
+          ),
         };
       });
 
@@ -111,9 +116,24 @@ export const useMainStore = defineStore({
   },
 });
 
-const getPlayerTotalPoints = (player: Player, currentRound: Round) => {
+export const getPlayerTotalPoints = (
+  player: Player,
+  currentRound: Round,
+  hasPointsReductionHappened: boolean,
+  setHasPointsReductionHappened: () => void
+) => {
   const playerWithMinimumPoints = getPlayerWithMinimumPoints(currentRound);
-  const store = useMainStore();
+
+  // IF PLAYER SAID GABO WITH THE SAME AMOUNT OF POINTS AS OTHER PLAYER APPLY FORMULA: TOTAL POINTS
+  const allPlayersPoints = [...currentRound.values()].map(
+    (value) => value.points
+  );
+  if (
+    currentRound.get(player.name)!.saidGabo &&
+    allPlayersPoints.includes(currentRound.get(player.name)!.points)
+  ) {
+    return player.totalPoints;
+  }
 
   // IF PLAYER WITH THE MINIMUM POINTS SAID GABO APPLY FORMULA: TOTAL POINTS - ROUND POINTS - 5
   if (
@@ -135,9 +155,9 @@ const getPlayerTotalPoints = (player: Player, currentRound: Round) => {
   if (
     player.totalPoints + currentRound.get(player.name)!.points ===
       TOTAL_GAME_POINTS &&
-    !store.hasPointsReductionHappened
+    !hasPointsReductionHappened
   ) {
-    store.setHasPointsReductionHappened();
+    setHasPointsReductionHappened();
     return player.totalPoints - 50;
   }
 
