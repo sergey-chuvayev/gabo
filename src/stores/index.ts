@@ -125,12 +125,12 @@ export const getPlayerTotalPoints = (
   const playerWithMinimumPoints = getPlayerWithMinimumPoints(currentRound);
 
   // IF PLAYER SAID GABO WITH THE SAME AMOUNT OF POINTS AS OTHER PLAYER APPLY FORMULA: TOTAL POINTS
-  const allPlayersPoints = [...currentRound.values()].map(
-    (value) => value.points
-  );
+  const otherPlayersPoints = [...currentRound.entries()]
+    .filter((entry) => entry[0] !== player.name)
+    .map((entry) => entry[1].points);
   if (
     currentRound.get(player.name)!.saidGabo &&
-    allPlayersPoints.includes(currentRound.get(player.name)!.points)
+    otherPlayersPoints.includes(currentRound.get(player.name)!.points)
   ) {
     return player.totalPoints;
   }
