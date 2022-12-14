@@ -2,6 +2,7 @@
 import { useMainStore } from "@/stores";
 import { defineProps } from "vue";
 import type { Player } from "../models/player.model";
+import ButtonRedesigned from "./ButtonRedesigned.vue";
 
 type Props = {
   player: Player;
@@ -32,18 +33,28 @@ const handlePlayerSaidGabo = (playerName: string) => {
     </div>
     <div class="bottom">
       <div class="counter">
-        <button v-if="points >= 1" @click="onDecrementPoints(player.name)">–</button>
+        <ButtonRedesigned
+          v-if="points >= 1"
+          @click="onDecrementPoints(player.name)"
+          class="counter-btn"
+        >
+          –
+        </ButtonRedesigned>
         <div v-if="points < 1" class="counter__blank-space"></div>
         <div class="round-points">{{ points }} points</div>
-        <button @click="onIncrementPoints(player.name)">+</button>
+        <ButtonRedesigned
+          @click="onIncrementPoints(player.name)"
+          class="counter-btn"
+          >+</ButtonRedesigned
+        >
       </div>
-      <button
+      <ButtonRedesigned
         :class="saidGabo ? 'saidGabo' : ''"
-        class="button"
+        class="gabo-btn"
         @click="handlePlayerSaidGabo(player.name)"
       >
         GABO!
-      </button>
+      </ButtonRedesigned>
     </div>
   </div>
 </template>
@@ -68,14 +79,18 @@ const handlePlayerSaidGabo = (playerName: string) => {
 .counter__blank-space {
   width: var(--btn-width);
 }
+
+.counter-btn {
+  width: var(--btn-width);
+}
 .container {
   width: 320px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
-.button {
-  opacity: 0.1;
+.gabo-btn {
+  opacity: 0.6;
 }
 .saidGabo {
   opacity: 1;

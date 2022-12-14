@@ -2,6 +2,7 @@
 import router from "@/router";
 import { ref } from "vue";
 import { useMainStore } from "../stores";
+import ButtonRedesigned from "./ButtonRedesigned.vue";
 
 const MAX_PLAYERS = 10;
 
@@ -43,11 +44,12 @@ const getNumberWord = (num: number) => {
 
 const startGame = () => {
   addPlayer();
-  if ( players.value.length < 2 ) {
-    errNumberOfPlayers.value = 'Vous devez être au moins deux joueurs pour jouer';
+  if (players.value.length < 2) {
+    errNumberOfPlayers.value =
+      "Vous devez être au moins deux joueurs pour jouer";
     return;
   }
-  errNumberOfPlayers.value = '';
+  errNumberOfPlayers.value = "";
   const store = useMainStore();
   store.createPlayers(players.value);
   router.push("/game/round");
@@ -65,15 +67,22 @@ const startGame = () => {
         <input type="text" v-model="name" placeholder="Nom du joueur" />
       </div>
       <div class="buttons">
-        <button v-if="players.length <= MAX_PLAYERS - 2" type="submit">
+        <ButtonRedesigned
+          v-if="players.length <= MAX_PLAYERS - 2"
+          type="submit"
+        >
           Joueur suivant
-        </button>
+        </ButtonRedesigned>
       </div>
       <div v-if="error !== ''">{{ error }}</div>
     </form>
-    <button v-if="players.length >= 1" @click="startGame" class="start-game">
+    <ButtonRedesigned
+      v-if="players.length >= 1"
+      @click="startGame"
+      class="start-game"
+    >
       Commencer la partie
-    </button>
+    </ButtonRedesigned>
     <div v-if="errNumberOfPlayers">{{ errNumberOfPlayers }}</div>
   </div>
 </template>
