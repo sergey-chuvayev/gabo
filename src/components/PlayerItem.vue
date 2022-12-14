@@ -32,7 +32,8 @@ const handlePlayerSaidGabo = (playerName: string) => {
     </div>
     <div class="bottom">
       <div class="counter">
-        <button @click="onDecrementPoints(player.name)">–</button>
+        <button v-if="points >= 1" @click="onDecrementPoints(player.name)">–</button>
+        <div v-if="points < 1" class="counter__blank-space"></div>
         <div class="round-points">{{ points }} points</div>
         <button @click="onIncrementPoints(player.name)">+</button>
       </div>
@@ -63,6 +64,9 @@ const handlePlayerSaidGabo = (playerName: string) => {
 .counter {
   display: flex;
   gap: 4px;
+}
+.counter__blank-space {
+  width: var(--btn-width);
 }
 .container {
   width: 320px;
