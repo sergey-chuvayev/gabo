@@ -76,11 +76,7 @@ const startGame = () => {
       </div>
       <div v-if="error !== ''">{{ error }}</div>
     </form>
-    <ButtonRedesigned
-      v-if="players.length >= 1"
-      @click="startGame"
-      class="start-game"
-    >
+    <ButtonRedesigned v-if="players.length >= 1" @click="startGame">
       Commencer la partie
     </ButtonRedesigned>
     <div v-if="errNumberOfPlayers">{{ errNumberOfPlayers }}</div>

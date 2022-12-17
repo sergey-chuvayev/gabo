@@ -12,7 +12,7 @@ import ArticleArea from "../components/ArticleArea.vue";
           <div class="title__text">Amicale du Gabo</div>
           <img src="/delimiter2.svg" alt="delimiter" />
         </div>
-        <clock class="home__clock"></clock>
+        <!-- <clock class="home__clock"></clock> -->
         <div class="home__quote">
           <div class="home__quote__text">
             "Le temps s'écoule sans faire de bruit"

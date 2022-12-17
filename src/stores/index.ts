@@ -39,7 +39,6 @@ export const useMainStore = defineStore({
         name,
         totalPoints: 0,
         roundPoints: 0,
-        hasPointsReducted: false,
       }));
       const round = new Map(
         this.players.map((player) => {

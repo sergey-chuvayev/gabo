@@ -40,13 +40,13 @@ const handlePlayerSaidGabo = (playerName: string) => {
     <div class="bottom">
       <div class="counter">
         <ButtonRedesigned
-          v-if="points >= 1"
+          :class="{ 'btn-disabled': points < 1 }"
+          :disabled="points < 1"
           @click="onDecrementPoints(player.name)"
           class="counter-btn"
         >
           –
         </ButtonRedesigned>
-        <div v-if="points < 1" class="counter__blank-space"></div>
         <div class="round-points">{{ points }} points</div>
         <ButtonRedesigned
           @click="onIncrementPoints(player.name)"
@@ -56,7 +56,7 @@ const handlePlayerSaidGabo = (playerName: string) => {
       </div>
       <ButtonRedesigned
         :class="saidGabo ? 'saidGabo' : ''"
-        class="gabo-btn"
+        class="btn-unactivated"
         @click="handlePlayerSaidGabo(player.name)"
       >
         GABO!
@@ -82,12 +82,17 @@ const handlePlayerSaidGabo = (playerName: string) => {
   display: flex;
   gap: 4px;
 }
-.counter__blank-space {
-  width: var(--btn-width);
+.btn-unactivated {
+  opacity: 0.6;
+}
+
+.btn-disabled {
+  opacity: 0.6;
+  cursor: default;
 }
 
 .counter-btn {
-  width: var(--btn-width);
+  width: 24px;
 }
 .container {
   width: 320px;
@@ -95,9 +100,7 @@ const handlePlayerSaidGabo = (playerName: string) => {
   display: flex;
   flex-direction: column;
 }
-.gabo-btn {
-  opacity: 0.6;
-}
+
 .saidGabo {
   opacity: 1;
 }

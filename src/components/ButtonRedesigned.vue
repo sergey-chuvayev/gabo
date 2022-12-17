@@ -12,5 +12,6 @@
   font-family: 'Milonga', cursive;
   background: var(--color-dark);
   color: var(--color-light);
+  cursor: pointer;
 }
 </style>
