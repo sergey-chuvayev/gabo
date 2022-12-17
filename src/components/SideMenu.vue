@@ -90,6 +90,7 @@ const closeMenu = () => {
   align-items: center;
   margin: 0;
   padding: 16px;
+  box-shadow: 2px 0px 20px black;
 }
 
 .menu-container--is-visible {
