@@ -7,21 +7,10 @@ export type RootState = {
   players: Player[];
   rounds: Round[];
   currentRound: number;
-  hasPointsReductionHappened: boolean;
+  userNamesWithReductionPoints: string[];
 };
 
 const TOTAL_GAME_POINTS = 100;
-
-const defaultPlayers: Player[] = [
-  {
-    name: "Constick",
-    totalPoints: 0,
-  },
-  {
-    name: "Sergick",
-    totalPoints: 0,
-  },
-];
 
 const map = new Map();
 map.set("Constick", { points: 0, saidGabo: false });
@@ -36,17 +25,21 @@ export const useMainStore = defineStore({
       players: [],
       rounds: [],
       currentRound: 0,
-      hasPointsReductionHappened: false,
+      userNamesWithReductionPoints: [],
     } as RootState),
   actions: {
-    setHasPointsReductionHappened() {
-      this.hasPointsReductionHappened = true;
+    setUserNameWithReductionPoints(userName: string) {
+      this.userNamesWithReductionPoints = [
+        ...this.userNamesWithReductionPoints,
+        userName,
+      ];
     },
     createPlayers(names: string[]) {
       this.players = names.map((name) => ({
         name,
         totalPoints: 0,
         roundPoints: 0,
+        hasPointsReducted: false,
       }));
       const round = new Map(
         this.players.map((player) => {
@@ -90,8 +83,8 @@ export const useMainStore = defineStore({
           totalPoints: getPlayerTotalPoints(
             player,
             currentRound,
-            this.hasPointsReductionHappened,
-            this.setHasPointsReductionHappened
+            this.userNamesWithReductionPoints,
+            this.setUserNameWithReductionPoints
           ),
         };
       });
@@ -119,8 +112,8 @@ export const useMainStore = defineStore({
 export const getPlayerTotalPoints = (
   player: Player,
   currentRound: Round,
-  hasPointsReductionHappened: boolean,
-  setHasPointsReductionHappened: () => void
+  userNamesWithReductionPoints: string[],
+  setUserNameWithReductionPoints: (userName: string) => void
 ) => {
   const playerWithMinimumPoints = getPlayerWithMinimumPoints(currentRound);
 
@@ -155,9 +148,9 @@ export const getPlayerTotalPoints = (
   if (
     player.totalPoints + currentRound.get(player.name)!.points ===
       TOTAL_GAME_POINTS &&
-    !hasPointsReductionHappened
+    !userNamesWithReductionPoints.includes(player.name)
   ) {
-    setHasPointsReductionHappened();
+    setUserNameWithReductionPoints(player.name);
     return player.totalPoints - 50;
   }
 

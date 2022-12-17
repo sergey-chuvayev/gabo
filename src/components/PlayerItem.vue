@@ -28,7 +28,13 @@ const handlePlayerSaidGabo = (playerName: string) => {
 <template>
   <div class="container">
     <div class="top">
-      <div class="name">{{ player.name }}</div>
+      <div class="name">
+        {{ player.name }}
+        <span v-if="store.userNamesWithReductionPoints.includes(player.name)"
+          >🙀</span
+        >
+      </div>
+
       <div class="total-points">{{ player.totalPoints }} points totaux</div>
     </div>
     <div class="bottom">
