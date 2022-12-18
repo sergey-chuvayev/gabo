@@ -58,7 +58,7 @@ const closeMenu = () => {
         </RouterLink>
       </li>
       <li>
-        <RouterLink to="/contacts" class="menu-container__list__link">
+        <RouterLink to="/contacts" class="menu-container__list__link contact">
           Nous écrire
         </RouterLink>
       </li>
@@ -78,6 +78,7 @@ const closeMenu = () => {
   transition: transform ease-in-out 200ms;
   display: flex;
   z-index: var(--menu-z);
+  font-family: 'Milonga';
 }
 .menu-container__list {
   width: 65%;
@@ -107,6 +108,11 @@ const closeMenu = () => {
   text-decoration: none;
   font-size: 22px;
   color: var(--color-light);
+}
+
+.contact {
+  border: 4px double var(--color-light);
+  padding: 8px 16px;
 }
 
 .menu-container__list__delimiter1 {
