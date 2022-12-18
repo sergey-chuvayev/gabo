@@ -35,7 +35,7 @@ const handlePlayerSaidGabo = (playerName: string) => {
         >
       </div>
 
-      <div class="total-points">{{ player.totalPoints }} points totaux</div>
+      <div class="total-points">Total {{ player.totalPoints }}</div>
     </div>
     <div class="bottom">
       <div class="counter">
@@ -45,30 +45,37 @@ const handlePlayerSaidGabo = (playerName: string) => {
           @click="onDecrementPoints(player.name)"
           class="counter-btn"
         >
-          –
+          <img src="/minus.svg" alt="-" />
         </ButtonRedesigned>
-        <div class="round-points">{{ points }} points</div>
+        <div class="round-points">{{ points }}</div>
         <ButtonRedesigned
           @click="onIncrementPoints(player.name)"
           class="counter-btn"
-          >+</ButtonRedesigned
         >
+          <img src="/plus.svg" alt="+" />
+        </ButtonRedesigned>
       </div>
       <ButtonRedesigned
         :class="saidGabo ? 'saidGabo' : ''"
         class="btn-unactivated"
         @click="handlePlayerSaidGabo(player.name)"
       >
-        GABO!
+        Gabo 👋
       </ButtonRedesigned>
     </div>
   </div>
 </template>
 
 <style scoped>
+
+.container {
+  font-family: 'Jost';
+
+}
 .top {
   display: flex;
   justify-content: space-between;
+  font-size: 26px;
 }
 .name {
   color: black;
@@ -77,10 +84,13 @@ const handlePlayerSaidGabo = (playerName: string) => {
   display: flex;
   justify-content: space-between;
   margin-top: 8px;
+  align-items: center;
 }
 .counter {
   display: flex;
-  gap: 4px;
+  align-items: center;
+  width: 175px;
+  justify-content: space-around;
 }
 .btn-unactivated {
   opacity: 0.6;
@@ -92,11 +102,13 @@ const handlePlayerSaidGabo = (playerName: string) => {
 }
 
 .counter-btn {
-  width: 24px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 .container {
   width: 320px;
-  margin: 0 auto;
+  margin: 30px auto 0 auto;
   display: flex;
   flex-direction: column;
 }
@@ -104,8 +116,10 @@ const handlePlayerSaidGabo = (playerName: string) => {
 .saidGabo {
   opacity: 1;
 }
-.total-points,
+.total-points {
+}
 .round-points {
+  font-size: 32px;
   color: black;
 }
 </style>

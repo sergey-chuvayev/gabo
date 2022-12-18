@@ -51,9 +51,10 @@ const checkSomePlayersHaveNoGabo = () => {
 
 <template>
   <div class="container">
-    <h1>Manche {{ currentRound + 1 }}</h1>
+    <h1 class="game-round-title">Manche {{ currentRound + 1 }}</h1>
     <div class="players-list">
       <div class="player-item" v-for="player in players" :key="player.name">
+        <div class="player-item__delimiter"></div>
         <PlayerItem
           :points="rounds[currentRound].get(player.name)!.points"
           :player="player"
@@ -63,15 +64,19 @@ const checkSomePlayersHaveNoGabo = () => {
       </div>
     </div>
     <ButtonRedesigned @click="handleEndRoundClick" class="end-round">
-      Fin de la manche
+      Prochaine manche
     </ButtonRedesigned>
-    <div v-if="allPlayersHaveZeroPoints || somePlayersHaveNoGabo">
-      Vous devez indiquer le nombre de points de chaque joueur et désigner qui a prononcé Gabo
+    <div v-if="allPlayersHaveZeroPoints || somePlayersHaveNoGabo" class="issue">
+      Vous devez indiquer le nombre de points de chaque joueur et désigner qui a
+      prononcé Gabo
     </div>
   </div>
 </template>
 
 <style scoped>
+.game-round-title {
+  font-family: "Jost";
+}
 .container {
   width: 320px;
   margin: 0 auto;
@@ -86,7 +91,20 @@ const checkSomePlayersHaveNoGabo = () => {
   gap: 32px;
 }
 
+.player-item__delimiter {
+  background-color: var(--color-dark);
+  mask: url(/delimiter2.svg) no-repeat center / contain;
+  -webkit-mask: url(/delimiter2.svg) no-repeat center / contain;
+  height: 20px;
+  width: 330px;
+}
+
 .end-round {
   margin-top: 64px;
+}
+
+.issue {
+  margin-top: 20px;
+  font-family: "Lancelot";
 }
 </style>

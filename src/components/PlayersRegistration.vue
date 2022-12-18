@@ -64,12 +64,18 @@ const startGame = () => {
         <label for="name"
           >Entrer le nom du {{ getNumberWord(players.length) }} joueur</label
         >
-        <input type="text" v-model="name" placeholder="Nom du joueur" />
+        <input
+          type="text"
+          v-model="name"
+          placeholder="Nom du joueur"
+          class="input-area"
+        />
       </div>
       <div class="buttons">
         <ButtonRedesigned
           v-if="players.length <= MAX_PLAYERS - 2"
           type="submit"
+          class="button-next-player"
         >
           Joueur suivant
         </ButtonRedesigned>
@@ -94,15 +100,28 @@ const startGame = () => {
 .buttons {
   margin-top: 16px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+}
+.button-next-player {
+  margin-bottom: 32px;
 }
 
 .input {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-bottom: 32px;
 }
-
+.input-area {
+  background: white;
+  border: 2px solid var(--color-dark);
+  box-shadow: 2px 2px 0px var(--color-dark);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-family: "Jost";
+  font-size: 14px;
+  outline: none;
+}
 .start-game {
   margin-top: 64px;
 }

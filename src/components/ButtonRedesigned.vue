@@ -8,10 +8,15 @@
 
 <style scoped>
 .button {
-  border-radius: 8px;
-  font-family: 'Milonga', cursive;
-  background: var(--color-dark);
-  color: var(--color-light);
+  border: 2px solid var(--color-dark);
+  box-shadow: 2px 2px 0px var(--color-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
+  border-radius: 30px;
+  padding: 16px 8px;
+  font-family: 'Jost';
+  font-size: 20px;
 }
 </style>
