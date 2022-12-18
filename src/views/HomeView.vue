@@ -49,18 +49,17 @@ setInterval(() => {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 24px;
 }
 
 .home__logo {
   height: 141px;
-  margin-top: 75px;
 }
 
 .home__title {
   font-family: "Milonga", cursive;
-  font-size: 54px;
+  font-size: 44px;
   text-align: center;
+  line-height: 50px;
 }
 
 .home__quote {
@@ -70,8 +69,12 @@ setInterval(() => {
 }
 .home__quote__text {
   font-size: 38px;
+  line-height: 42px;
+  margin-top: 24px;
 }
 .home__quote__author {
   font-size: 26px;
+  line-height: 31px;
+  margin-top: 30px;
 }
 </style>

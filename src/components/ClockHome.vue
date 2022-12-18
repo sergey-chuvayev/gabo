@@ -38,6 +38,8 @@ setInterval(() => {
   justify-content: center;
   background: url("https://github.com/umarcbs/AnalogCLock/blob/master/clock-face2.png?raw=true");
   background-size: 100% 100%;
+  margin: 16px 0;
+  margin-bottom: 0;
 }
 .arrow {
   width: 35%;
