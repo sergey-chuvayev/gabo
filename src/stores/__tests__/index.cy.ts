@@ -14,7 +14,7 @@ describe("getPlayerTotalPoints()", () => {
     expect(totalPoints).equals(0);
   });
 
-  it("IF PLAYER WITH THE MINIMUM POINTS SAID GABO", () => {
+  it("returns the right result if player with the minimum points said gabo", () => {
     const map = new Map();
     map.set("First player", { points: 3, saidGabo: true });
     map.set("Second player", { points: 5, saidGabo: false });
