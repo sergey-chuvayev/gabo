@@ -70,6 +70,7 @@ const startGame = () => {
           placeholder="Nom du joueur"
           class="input-area"
         />
+        <div class="error" v-if="error !== ''">{{ error }}</div>
       </div>
       <div class="buttons">
         <ButtonRedesigned
@@ -80,12 +81,13 @@ const startGame = () => {
           Joueur suivant
         </ButtonRedesigned>
       </div>
-      <div v-if="error !== ''">{{ error }}</div>
     </form>
     <ButtonRedesigned v-if="players.length >= 1" @click="startGame">
       Commencer la partie
     </ButtonRedesigned>
-    <div v-if="errNumberOfPlayers">{{ errNumberOfPlayers }}</div>
+    <div class="error mt-8" v-if="errNumberOfPlayers">
+      {{ errNumberOfPlayers }}
+    </div>
   </div>
 </template>
 
@@ -96,6 +98,13 @@ const startGame = () => {
   display: flex;
   flex-direction: column;
 }
+.error {
+  color: #b92828;
+  font-size: 12px;
+}
+.mt-8 {
+  margin-top: 8px;
+}
 
 .buttons {
   margin-top: 16px;
@@ -104,6 +113,7 @@ const startGame = () => {
 }
 .button-next-player {
   margin-bottom: 32px;
+  padding: 8px 24px;
 }
 
 .input {

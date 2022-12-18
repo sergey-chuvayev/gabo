@@ -56,21 +56,19 @@ const handlePlayerSaidGabo = (playerName: string) => {
         </ButtonRedesigned>
       </div>
       <ButtonRedesigned
-        :class="saidGabo ? 'saidGabo' : ''"
         class="btn-unactivated"
+        :class="saidGabo ? 'btn-unactivated--said-gabo' : ''"
         @click="handlePlayerSaidGabo(player.name)"
       >
-        Gabo 👋
+        Gabo
       </ButtonRedesigned>
     </div>
   </div>
 </template>
 
 <style scoped>
-
 .container {
-  font-family: 'Jost';
-
+  font-family: "Jost";
 }
 .top {
   display: flex;
@@ -93,12 +91,26 @@ const handlePlayerSaidGabo = (playerName: string) => {
   justify-content: space-around;
 }
 .btn-unactivated {
-  opacity: 0.6;
+  background: none;
+  height: 50px;
+  padding-left: 27px;
+}
+.btn-unactivated::after {
+  content: " 👋";
+  visibility: hidden;
+  margin-left: 4px;
+}
+.btn-unactivated--said-gabo {
+  background-color: var(--color-white);
+}
+.btn-unactivated--said-gabo::after {
+  background: initial;
+  visibility: visible;
 }
 
 .btn-disabled {
-  opacity: 0.6;
   cursor: default;
+  background: none;
 }
 
 .counter-btn {

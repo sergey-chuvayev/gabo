@@ -14,9 +14,14 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  border-radius: 30px;
+  border-radius: 50px;
   padding: 16px 8px;
-  font-family: 'Jost';
-  font-size: 20px;
+  font-family: "Jost";
+  font-size: 16px;
+  background-color: var(--color-white);
+  text-transform: uppercase;
+}
+.button:active {
+  box-shadow: 1px 1px 0px var(--color-dark);
 }
 </style>
