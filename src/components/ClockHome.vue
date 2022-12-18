@@ -14,9 +14,18 @@ setInterval(() => {
 
 <template>
   <div class="watch">
-    <div :style="{ transform: `rotate(${secondsAngle}deg)` }" class="seconds arrow" />
-    <div :style="{ transform: `rotate(${minutesAngle}deg)` }" class="minutes arrow" />
-    <div :style="{ transform: `rotate(${hoursAngle}deg)` }" class="hours arrow" />
+    <div
+      :style="{ transform: `rotate(${secondsAngle}deg)` }"
+      class="seconds arrow"
+    />
+    <div
+      :style="{ transform: `rotate(${minutesAngle}deg)` }"
+      class="minutes arrow"
+    />
+    <div
+      :style="{ transform: `rotate(${hoursAngle}deg)` }"
+      class="hours arrow"
+    />
   </div>
 </template>
 
@@ -24,43 +33,35 @@ setInterval(() => {
 .watch {
   width: 120px;
   height: 120px;
-  border: 1px solid black;
-  border-radius: 50%;
   position: relative;
   display: flex;
   justify-content: center;
-  background: url('https://github.com/umarcbs/AnalogCLock/blob/master/clock-face2.png?raw=true');
+  background: url("https://github.com/umarcbs/AnalogCLock/blob/master/clock-face2.png?raw=true");
   background-size: 100% 100%;
 }
 .arrow {
   width: 35%;
-  height: 6px;
-  background-color: black;
+  height: 5px;
+  background-color: var(--color-dark);
   position: absolute;
   border-radius: 2px;
   top: 49.5%;
   left: 17.5%;
   transform-origin: 95%;
   transform: rotate(90deg);
-  transition: all .1s;
+  transition: all 0.1s;
   transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
 }
 .seconds {
-  height: 3px;
+  height: 1px;
 }
 .minutes {
-
+  height: 2px;
 }
 .hours {
+  height: 4px;
   width: 20%;
   left: 31.8%;
   top: 50%;
-}
-.arrow::after {
-  /* content: "";
-  background: #000;
-  width: 1px;
-  height: 50px;
-  position: absolute; */
 }
 </style>

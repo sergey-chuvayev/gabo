@@ -24,7 +24,7 @@ setInterval(() => {
           <div class="title__text">Amicale du Gabo</div>
           <img src="/delimiter2.svg" alt="delimiter" />
         </div>
-        <ClockHomeVue class="home__clock"></ClockHomeVue>
+        <ClockHomeVue />
         <div class="home__quote">
           <div class="home__quote__text">
             "Le temps s'écoule sans faire de bruit"
@@ -58,25 +58,20 @@ setInterval(() => {
 }
 
 .home__title {
-  font-family: 'Milonga', cursive;
+  font-family: "Milonga", cursive;
   font-size: 54px;
   text-align: center;
 }
 
-.home__clock {
-  height: 130px;
-}
-
-.home__quote{
-  font-family: 'Lancelot', cursive;
+.home__quote {
+  font-family: "Lancelot", cursive;
   text-align: center;
   margin-bottom: 30px;
 }
 .home__quote__text {
   font-size: 38px;
-} 
+}
 .home__quote__author {
   font-size: 26px;
 }
-
 </style>
