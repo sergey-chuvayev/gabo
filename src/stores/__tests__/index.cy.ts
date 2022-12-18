@@ -40,7 +40,7 @@ describe("getPlayerTotalPoints()", () => {
     expect(totalPoints).equals(18);
   });
 
-  it("IF SOME PLAYER HAS EXACTLY 100 POINTS", () => {
+  it("returns the right result if the player gained exactly 100 points", () => {
     const map = new Map();
     map.set("First player", { points: 0, saidGabo: false });
     map.set("Second player", { points: 2, saidGabo: true });
