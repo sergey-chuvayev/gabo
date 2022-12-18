@@ -8,7 +8,7 @@ describe("getPlayerTotalPoints()", () => {
     const totalPoints = getPlayerTotalPoints(
       { totalPoints: 0, name: "First player" },
       map,
-      true,
+      [],
       () => {}
     );
     expect(totalPoints).equals(0);

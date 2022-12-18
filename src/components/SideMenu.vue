@@ -26,7 +26,7 @@ const closeMenu = () => {
         </RouterLink>
       </li>
       <li>
-        <div class="menu-container__list__delimiter"></div>
+        <div class="menu-container__list__delimiter2"></div>
       </li>
       <li>
         <RouterLink to="/rules" class="menu-container__list__link">
@@ -34,7 +34,7 @@ const closeMenu = () => {
         </RouterLink>
       </li>
       <li>
-        <div class="menu-container__list__delimiter"></div>
+        <div class="menu-container__list__delimiter1"></div>
       </li>
       <li>
         <RouterLink to="/variants" class="menu-container__list__link">
@@ -42,7 +42,7 @@ const closeMenu = () => {
         </RouterLink>
       </li>
       <li>
-        <div class="menu-container__list__delimiter"></div>
+        <div class="menu-container__list__delimiter2"></div>
       </li>
       <li>
         <RouterLink to="/game" class="menu-container__list__link">
@@ -50,7 +50,7 @@ const closeMenu = () => {
         </RouterLink>
       </li>
       <li>
-        <div class="menu-container__list__delimiter"></div>
+        <div class="menu-container__list__delimiter1"></div>
       </li>
       <li>
         <RouterLink to="/about" class="menu-container__list__link">
@@ -58,7 +58,7 @@ const closeMenu = () => {
         </RouterLink>
       </li>
       <li>
-        <RouterLink to="/contacts" class="menu-container__list__link">
+        <RouterLink to="/contacts" class="menu-container__list__link contact">
           Nous écrire
         </RouterLink>
       </li>
@@ -78,6 +78,7 @@ const closeMenu = () => {
   transition: transform ease-in-out 200ms;
   display: flex;
   z-index: var(--menu-z);
+  font-family: 'Milonga';
 }
 .menu-container__list {
   width: 65%;
@@ -90,6 +91,7 @@ const closeMenu = () => {
   align-items: center;
   margin: 0;
   padding: 16px;
+  box-shadow: 2px 0px 20px black;
 }
 
 .menu-container--is-visible {
@@ -108,10 +110,22 @@ const closeMenu = () => {
   color: var(--color-light);
 }
 
-.menu-container__list__delimiter {
+.contact {
+  border: 4px double var(--color-light);
+  padding: 8px 16px;
+}
+
+.menu-container__list__delimiter1 {
   background-color: var(--color-light);
-  mask: url(../../../assets/delimiter2.svg) no-repeat center / contain;
-  -webkit-mask: url(../../../assets/delimiter2.svg) no-repeat center / contain;
+  mask: url(/delimiter1.svg) no-repeat center / contain;
+  -webkit-mask: url(/delimiter1.svg) no-repeat center / contain;
+  height: 20px;
+  width: 200px;
+}
+.menu-container__list__delimiter2 {
+  background-color: var(--color-light);
+  mask: url(/delimiter2.svg) no-repeat center / contain;
+  -webkit-mask: url(/delimiter2.svg) no-repeat center / contain;
   height: 20px;
   width: 200px;
 }

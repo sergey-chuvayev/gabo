@@ -1,8 +1,10 @@
 @import './base.css';
-@import url('https://fonts.googleapis.com/css2?family=Lancelot&family=Milonga&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400&family=Lancelot&family=Milonga&display=swap');
+
 :root {
   --color-dark: #333333;
   --color-light: #DAC389;
+  --color-white: #FFFFFF;
   --menu-z: 10;
 }
 

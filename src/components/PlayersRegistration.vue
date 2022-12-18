@@ -2,6 +2,7 @@
 import router from "@/router";
 import { ref } from "vue";
 import { useMainStore } from "../stores";
+import ButtonRedesigned from "./ButtonRedesigned.vue";
 
 const MAX_PLAYERS = 10;
 
@@ -43,11 +44,12 @@ const getNumberWord = (num: number) => {
 
 const startGame = () => {
   addPlayer();
-  if ( players.value.length < 2 ) {
-    errNumberOfPlayers.value = 'Vous devez être au moins deux joueurs pour jouer';
+  if (players.value.length < 2) {
+    errNumberOfPlayers.value =
+      "Vous devez être au moins deux joueurs pour jouer";
     return;
   }
-  errNumberOfPlayers.value = '';
+  errNumberOfPlayers.value = "";
   const store = useMainStore();
   store.createPlayers(players.value);
   router.push("/game/round");
@@ -62,19 +64,30 @@ const startGame = () => {
         <label for="name"
           >Entrer le nom du {{ getNumberWord(players.length) }} joueur</label
         >
-        <input type="text" v-model="name" placeholder="Nom du joueur" />
+        <input
+          type="text"
+          v-model="name"
+          placeholder="Nom du joueur"
+          class="input-area"
+        />
+        <div class="error" v-if="error !== ''">{{ error }}</div>
       </div>
       <div class="buttons">
-        <button v-if="players.length <= MAX_PLAYERS - 2" type="submit">
+        <ButtonRedesigned
+          v-if="players.length <= MAX_PLAYERS - 2"
+          type="submit"
+          class="button-next-player"
+        >
           Joueur suivant
-        </button>
+        </ButtonRedesigned>
       </div>
-      <div v-if="error !== ''">{{ error }}</div>
     </form>
-    <button v-if="players.length >= 1" @click="startGame" class="start-game">
+    <ButtonRedesigned v-if="players.length >= 1" @click="startGame">
       Commencer la partie
-    </button>
-    <div v-if="errNumberOfPlayers">{{ errNumberOfPlayers }}</div>
+    </ButtonRedesigned>
+    <div class="error mt-8" v-if="errNumberOfPlayers">
+      {{ errNumberOfPlayers }}
+    </div>
   </div>
 </template>
 
@@ -85,19 +98,40 @@ const startGame = () => {
   display: flex;
   flex-direction: column;
 }
+.error {
+  color: #b92828;
+  font-size: 12px;
+}
+.mt-8 {
+  margin-top: 8px;
+}
 
 .buttons {
   margin-top: 16px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+}
+.button-next-player {
+  margin-bottom: 32px;
+  padding: 8px 24px;
 }
 
 .input {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-bottom: 32px;
 }
-
+.input-area {
+  background: white;
+  border: 2px solid var(--color-dark);
+  box-shadow: 2px 2px 0px var(--color-dark);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-family: "Jost";
+  font-size: 14px;
+  outline: none;
+}
 .start-game {
   margin-top: 64px;
 }

@@ -2,6 +2,7 @@
 import { useMainStore } from "@/stores";
 import { defineProps } from "vue";
 import type { Player } from "../models/player.model";
+import ButtonRedesigned from "./ButtonRedesigned.vue";
 
 type Props = {
   player: Player;
@@ -27,30 +28,52 @@ const handlePlayerSaidGabo = (playerName: string) => {
 <template>
   <div class="container">
     <div class="top">
-      <div class="name">{{ player.name }}</div>
-      <div class="total-points">{{ player.totalPoints }} points totaux</div>
+      <div class="name">
+        {{ player.name }}
+        <span v-if="store.userNamesWithReductionPoints.includes(player.name)"
+          >🙀</span
+        >
+      </div>
+
+      <div class="total-points">Total {{ player.totalPoints }}</div>
     </div>
     <div class="bottom">
       <div class="counter">
-        <button @click="onDecrementPoints(player.name)">–</button>
-        <div class="round-points">{{ points }} points</div>
-        <button @click="onIncrementPoints(player.name)">+</button>
+        <ButtonRedesigned
+          :class="{ 'btn-disabled': points < 1 }"
+          :disabled="points < 1"
+          @click="onDecrementPoints(player.name)"
+          class="counter-btn"
+        >
+          <img src="/minus.svg" alt="-" />
+        </ButtonRedesigned>
+        <div class="round-points">{{ points }}</div>
+        <ButtonRedesigned
+          @click="onIncrementPoints(player.name)"
+          class="counter-btn"
+        >
+          <img src="/plus.svg" alt="+" />
+        </ButtonRedesigned>
       </div>
-      <button
-        :class="saidGabo ? 'saidGabo' : ''"
-        class="button"
+      <ButtonRedesigned
+        class="btn-unactivated"
+        :class="saidGabo ? 'btn-unactivated--said-gabo' : ''"
         @click="handlePlayerSaidGabo(player.name)"
       >
-        GABO!
-      </button>
+        Gabo
+      </ButtonRedesigned>
     </div>
   </div>
 </template>
 
 <style scoped>
+.container {
+  font-family: "Jost";
+}
 .top {
   display: flex;
   justify-content: space-between;
+  font-size: 26px;
 }
 .name {
   color: black;
@@ -59,25 +82,56 @@ const handlePlayerSaidGabo = (playerName: string) => {
   display: flex;
   justify-content: space-between;
   margin-top: 8px;
+  align-items: center;
 }
 .counter {
   display: flex;
-  gap: 4px;
+  align-items: center;
+  width: 175px;
+  justify-content: space-around;
+}
+.btn-unactivated {
+  background: none;
+  height: 50px;
+  padding-left: 27px;
+}
+.btn-unactivated::after {
+  content: " 👋";
+  visibility: hidden;
+  margin-left: 4px;
+}
+.btn-unactivated--said-gabo {
+  background-color: var(--color-white);
+}
+.btn-unactivated--said-gabo::after {
+  background: initial;
+  visibility: visible;
+}
+
+.btn-disabled {
+  cursor: default;
+  background: none;
+}
+
+.counter-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 .container {
   width: 320px;
-  margin: 0 auto;
+  margin: 30px auto 0 auto;
   display: flex;
   flex-direction: column;
 }
-.button {
-  opacity: 0.1;
-}
+
 .saidGabo {
   opacity: 1;
 }
-.total-points,
+.total-points {
+}
 .round-points {
+  font-size: 32px;
   color: black;
 }
 </style>
