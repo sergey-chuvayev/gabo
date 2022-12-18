@@ -13,15 +13,15 @@ describe("getPlayerTotalPoints()", () => {
       () => {}
     );
     const totalPointsSecondPlayer = getPlayerTotalPoints(
-      { totalPoints: 0, name: "Second player" }, 
+      { totalPoints: 0, name: "Second player" },
       map,
-      false,
+      [],
       () => {}
     );
     const totalPointsThirdlayer = getPlayerTotalPoints(
-      { totalPoints: 0, name: "Third player" }, 
+      { totalPoints: 0, name: "Third player" },
       map,
-      false,
+      [],
       () => {}
     );
     expect(totalPointsFirstPlayer).equals(0);
@@ -37,19 +37,19 @@ describe("getPlayerTotalPoints()", () => {
     const totalPointsFirstPlayer = getPlayerTotalPoints(
       { totalPoints: 3, name: "First player" },
       map,
-      true,
+      [],
       () => {}
     );
     const totalPointsSecondPlayer = getPlayerTotalPoints(
-      { totalPoints: 7, name: "Second player" }, 
+      { totalPoints: 7, name: "Second player" },
       map,
-      false,
+      [],
       () => {}
     );
     const totalPointsThirdlayer = getPlayerTotalPoints(
-      { totalPoints: 5, name: "Third player" }, 
+      { totalPoints: 5, name: "Third player" },
       map,
-      false,
+      [],
       () => {}
     );
     expect(totalPointsFirstPlayer).equals(-5);
@@ -65,19 +65,19 @@ describe("getPlayerTotalPoints()", () => {
     const totalPointsFirstPlayer = getPlayerTotalPoints(
       { totalPoints: 3, name: "First player" },
       map,
-      true,
+      [],
       () => {}
     );
     const totalPointsSecondPlayer = getPlayerTotalPoints(
-      { totalPoints: 7, name: "Second player" }, 
+      { totalPoints: 7, name: "Second player" },
       map,
-      false,
+      [],
       () => {}
     );
     const totalPointsThirdlayer = getPlayerTotalPoints(
-      { totalPoints: 5, name: "Third player" }, 
+      { totalPoints: 5, name: "Third player" },
       map,
-      false,
+      [],
       () => {}
     );
     expect(totalPointsFirstPlayer).equals(18);
@@ -92,7 +92,7 @@ describe("getPlayerTotalPoints()", () => {
     const totalPointsFirstPlayer = getPlayerTotalPoints(
       { totalPoints: 100, name: "First player" },
       map,
-      false,
+      [],
       () => {}
     );
     expect(totalPointsFirstPlayer).equals(50);
