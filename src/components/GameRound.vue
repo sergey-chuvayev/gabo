@@ -11,15 +11,15 @@ const players = computed(() => store.players);
 const rounds = computed(() => store.rounds);
 const currentRound = computed(() => store.currentRound);
 
-let somePlayersHaveZeroPoints = ref(false);
+let allPlayersHaveZeroPoints = ref(false);
 let somePlayersHaveNoGabo = ref(false);
 
 const onPlayerSaidGabo = (playerName: string) => {
   store.setPlayerRoundGabo(playerName);
 };
 const handleEndRoundClick = () => {
-  if (checkSomePlayersHaveZeroPoints() || checkSomePlayersHaveNoGabo()) {
-    somePlayersHaveZeroPoints.value = checkSomePlayersHaveZeroPoints();
+  if (checkAllPlayersHaveZeroPoints() || checkSomePlayersHaveNoGabo()) {
+    allPlayersHaveZeroPoints.value = checkAllPlayersHaveZeroPoints();
     somePlayersHaveNoGabo.value = checkSomePlayersHaveNoGabo();
   } else {
     store.endRound();
@@ -33,12 +33,12 @@ onBeforeMount(() => {
 });
 
 watch(currentRound, () => {
-  somePlayersHaveZeroPoints.value = false;
+  allPlayersHaveZeroPoints.value = false;
   somePlayersHaveNoGabo.value = false;
 });
 
-const checkSomePlayersHaveZeroPoints = () => {
-  return [...rounds.value[currentRound.value].values()].some(
+const checkAllPlayersHaveZeroPoints = () => {
+  return [...rounds.value[currentRound.value].values()].every(
     (value) => value.points === 0
   );
 };
@@ -65,7 +65,7 @@ const checkSomePlayersHaveNoGabo = () => {
     <ButtonRedesigned @click="handleEndRoundClick" class="end-round">
       Fin de la manche
     </ButtonRedesigned>
-    <div v-if="somePlayersHaveZeroPoints || somePlayersHaveNoGabo">
+    <div v-if="allPlayersHaveZeroPoints || somePlayersHaveNoGabo">
       Vous devez indiquer le nombre de points de chaque joueur et désigner qui a prononcé Gabo
     </div>
   </div>

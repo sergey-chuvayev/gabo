@@ -2,6 +2,7 @@
 import { useMainStore } from "@/stores";
 import { defineProps } from "vue";
 import type { Player } from "../models/player.model";
+import ButtonRedesigned from "./ButtonRedesigned.vue";
 
 type Props = {
   player: Player;
@@ -27,22 +28,39 @@ const handlePlayerSaidGabo = (playerName: string) => {
 <template>
   <div class="container">
     <div class="top">
-      <div class="name">{{ player.name }}</div>
+      <div class="name">
+        {{ player.name }}
+        <span v-if="store.userNamesWithReductionPoints.includes(player.name)"
+          >🙀</span
+        >
+      </div>
+
       <div class="total-points">{{ player.totalPoints }} points totaux</div>
     </div>
     <div class="bottom">
       <div class="counter">
-        <button @click="onDecrementPoints(player.name)">–</button>
+        <ButtonRedesigned
+          :class="{ 'btn-disabled': points < 1 }"
+          :disabled="points < 1"
+          @click="onDecrementPoints(player.name)"
+          class="counter-btn"
+        >
+          –
+        </ButtonRedesigned>
         <div class="round-points">{{ points }} points</div>
-        <button @click="onIncrementPoints(player.name)">+</button>
+        <ButtonRedesigned
+          @click="onIncrementPoints(player.name)"
+          class="counter-btn"
+          >+</ButtonRedesigned
+        >
       </div>
-      <button
+      <ButtonRedesigned
         :class="saidGabo ? 'saidGabo' : ''"
-        class="button"
+        class="btn-unactivated"
         @click="handlePlayerSaidGabo(player.name)"
       >
         GABO!
-      </button>
+      </ButtonRedesigned>
     </div>
   </div>
 </template>
@@ -64,15 +82,25 @@ const handlePlayerSaidGabo = (playerName: string) => {
   display: flex;
   gap: 4px;
 }
+.btn-unactivated {
+  opacity: 0.6;
+}
+
+.btn-disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.counter-btn {
+  width: 24px;
+}
 .container {
   width: 320px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
-.button {
-  opacity: 0.1;
-}
+
 .saidGabo {
   opacity: 1;
 }
