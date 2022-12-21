@@ -17,11 +17,11 @@ setInterval(() => {
 <template>
   <div class="app_container__block">
     <div class="home">
-      <img src="/Logogabocropped.png" class="home__logo" />
+      <img src="/logo.svg" class="home__logo mb-6" />
       <div class="home__title">
-        <img src="/delimiter1.svg" alt="delimiter" />
-        <div class="title__text">Amicale du Gabo</div>
-        <img src="/delimiter2.svg" alt="delimiter" />
+        <img src="/delimiter1.svg" class="delimiter" alt="delimiter" />
+        <div class="title__text mb-4">Amicale du Gabo</div>
+        <img src="/delimiter2.svg" class="delimiter" alt="delimiter" />
       </div>
       <ClockHomeVue />
       <div class="home__quote">
@@ -47,6 +47,10 @@ setInterval(() => {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+}
+
+.delimiter {
+  margin: 0 auto;
 }
 
 .home__logo {
