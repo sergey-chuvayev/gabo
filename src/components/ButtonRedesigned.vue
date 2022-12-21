@@ -21,6 +21,7 @@
   background-color: var(--color-white);
   text-transform: uppercase;
   touch-action: manipulation;
+  color: var(--color-dark);
 }
 .button:active {
   box-shadow: 1px 1px 0px var(--color-dark);
