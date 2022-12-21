@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import ArticleArea from "../components/ArticleArea.vue";
 import ClockHomeVue from "@/components/ClockHome.vue";
 
 let secondsAngle = ref<number>();
