@@ -4,8 +4,11 @@ import { useMainStore } from "@/stores";
 import router from "@/router";
 import PlayerItem from "./PlayerItem.vue";
 import ButtonRedesigned from "./ButtonRedesigned.vue";
+import useSound from "vue-use-sound";
+import endRoundSound from "../assets/endRound.wav";
 
 const store = useMainStore();
+const [playEndRoundSound] = useSound(endRoundSound);
 
 const players = computed(() => store.players);
 const rounds = computed(() => store.rounds);
@@ -22,6 +25,7 @@ const handleEndRoundClick = () => {
     allPlayersHaveZeroPoints.value = checkAllPlayersHaveZeroPoints();
     somePlayersHaveNoGabo.value = checkSomePlayersHaveNoGabo();
   } else {
+    playEndRoundSound();
     store.endRound();
   }
 };

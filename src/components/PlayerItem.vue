@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { useMainStore } from "@/stores";
 import { defineProps } from "vue";
+import useSound from "vue-use-sound";
 import type { Player } from "../models/player.model";
+import clickUpSound from "../assets/up.wav";
+import clickDownSound from "../assets/down.wav";
+import saidGaboSound from "../assets/saidGabo.wav";
 import ButtonRedesigned from "./ButtonRedesigned.vue";
 
 type Props = {
@@ -13,14 +17,20 @@ defineProps<Props>();
 const emit = defineEmits(["onPlayerSaidGabo"]);
 
 const store = useMainStore();
+const [playUpClick] = useSound(clickUpSound);
+const [playDownClick] = useSound(clickDownSound);
+const [playSaidGaboSound] = useSound(saidGaboSound);
 
 const onIncrementPoints = (playersName: string) => {
+  playUpClick();
   store.incrementPlayerRoundPoints(playersName);
 };
 const onDecrementPoints = (playersName: string) => {
+  playDownClick();
   store.decrementPlayerRoundPoints(playersName);
 };
 const handlePlayerSaidGabo = (playerName: string) => {
+  playSaidGaboSound();
   emit("onPlayerSaidGabo", playerName);
 };
 </script>
