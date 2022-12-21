@@ -15,27 +15,25 @@ setInterval(() => {
 </script>
 
 <template>
-  <ArticleArea>
-    <div class="app_container__block">
-      <div class="home">
-        <img src="/Logogabocropped.png" class="home__logo" />
-        <div class="home__title">
-          <img src="/delimiter1.svg" alt="delimiter" />
-          <div class="title__text">Amicale du Gabo</div>
-          <img src="/delimiter2.svg" alt="delimiter" />
+  <div class="app_container__block">
+    <div class="home">
+      <img src="/Logogabocropped.png" class="home__logo" />
+      <div class="home__title">
+        <img src="/delimiter1.svg" alt="delimiter" />
+        <div class="title__text">Amicale du Gabo</div>
+        <img src="/delimiter2.svg" alt="delimiter" />
+      </div>
+      <ClockHomeVue />
+      <div class="home__quote">
+        <div class="home__quote__text">
+          "Le temps s'écoule sans faire de bruit"
         </div>
-        <ClockHomeVue />
-        <div class="home__quote">
-          <div class="home__quote__text">
-            "Le temps s'écoule sans faire de bruit"
-          </div>
-          <div class="home__quote__author">
-            Gabriel Garcia Marquez, La Mala Hora (1962)
-          </div>
+        <div class="home__quote__author">
+          Gabriel Garcia Marquez, La Mala Hora (1962)
         </div>
       </div>
     </div>
-  </ArticleArea>
+  </div>
 </template>
 
 <style scoped>
