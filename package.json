@@ -3,20 +3,19 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "run-p type-check build-only",
-    "test:unit": "cypress run --component",
-    "test:e2e": "start-server-and-test preview :4173 'cypress run --e2e'",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "build-only": "vite build",
     "dev": "vite",
+    "build": "run-p type-check build-only",
     "preview": "vite preview",
+    "test:e2e": "start-server-and-test preview :4173 'cypress run --e2e'",
     "test:e2e:dev": "start-server-and-test 'vite dev --port 4173' :4173 'cypress open --e2e'",
+    "test:unit": "cypress run --component",
     "test:unit:dev": "cypress open --component",
-    "type-check": "vue-tsc --noEmit -p tsconfig.cypress-ct.json --composite false"
+    "build-only": "vite build",
+    "type-check": "vue-tsc --noEmit -p tsconfig.cypress-ct.json --composite false",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
     "pinia": "^2.0.26",
-    "register-service-worker": "^1.7.2",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
@@ -25,7 +24,6 @@
     "@types/node": "^18.11.9",
     "@vitejs/plugin-vue": "^3.2.0",
     "@vitejs/plugin-vue-jsx": "^2.1.1",
-    "@vue/cli-plugin-pwa": "~5.0.0",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^11.0.0",
     "@vue/tsconfig": "^0.1.3",
