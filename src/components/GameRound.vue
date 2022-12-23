@@ -79,6 +79,7 @@ const checkSomePlayersHaveNoGabo = () => {
 
 <style scoped>
 .game-round-title {
+  font-size: 22px;
   font-family: "Jost";
 }
 .container {
