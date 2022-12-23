@@ -34,10 +34,10 @@ const players: { name: string; totalPoints: number; isWinner: boolean }[] =
 </script>
 
 <template>
-  <main>
-    <h1>Results</h1>
+  <main class="flex m-0-auto w-[320px] flex-col">
+    <h1 class="text-xl mb-4">Results</h1>
     <div class="item" v-for="player in players" :key="player.name">
-      <div v-if="player.isWinner">Winner</div>
+      <div class="mb-2" v-if="player.isWinner">Winner</div>
       <div class="flexed">
         <div class="name">{{ player.name }}</div>
         <div>{{ player.totalPoints }} total points</div>
@@ -50,7 +50,10 @@ const players: { name: string; totalPoints: number; isWinner: boolean }[] =
 <style scoped>
 .item {
   margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--color-dark);
 }
+
 .flexed {
   display: flex;
   justify-content: space-between;
