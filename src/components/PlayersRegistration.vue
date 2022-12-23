@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import router from "@/router";
-import { ref } from "vue";
+import { onBeforeMount, ref } from "vue";
 import { useMainStore } from "../stores";
 import ButtonRedesigned from "./ButtonRedesigned.vue";
 
@@ -10,6 +10,12 @@ let players = ref<string[]>([]);
 let name = ref<string>("");
 let error = ref<string>("");
 let errNumberOfPlayers = ref<string>("");
+
+const store = useMainStore();
+
+onBeforeMount(() => {
+  store.resetGame();
+});
 
 const addPlayer = () => {
   if (players.value.includes(name.value)) {
@@ -50,7 +56,6 @@ const startGame = () => {
     return;
   }
   errNumberOfPlayers.value = "";
-  const store = useMainStore();
   store.createPlayers(players.value);
   router.push("/game/round");
 };

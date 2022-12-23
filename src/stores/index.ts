@@ -28,6 +28,12 @@ export const useMainStore = defineStore({
       userNamesWithReductionPoints: [],
     } as RootState),
   actions: {
+    resetGame() {
+      this.players = [];
+      this.rounds = [];
+      this.userNamesWithReductionPoints = [];
+      this.currentRound = 0;
+    },
     setUserNameWithReductionPoints(userName: string) {
       this.userNamesWithReductionPoints = [
         ...this.userNamesWithReductionPoints,
