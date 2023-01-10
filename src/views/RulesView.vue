@@ -6,6 +6,15 @@ import ArticleArea from '../components/ArticleArea.vue';
   <ArticleArea>
     <div class="app_container__block">
       <!-- TODO ici trop de texte > faire un sous menu -->
+      <div>
+        <ul class="subMenu">
+          <li>Déroulement d'une manche</li>
+          <li>Se défausser de ses cartes</li>
+          <li>Dire Gabo</li>
+          <li>Echanger des cartes</li>
+          <li>Pouvoir des cartes</li>
+        </ul>
+      </div>
 
       <div>
         <span class="subtitle">Matériel:</span> un jeu de 52 cartes. <br />
@@ -75,7 +84,7 @@ import ArticleArea from '../components/ArticleArea.vue';
         <p>Puissent nos heures de plaisir prise à ce jeu lui rendre hommage!</p>
       </div>
       <div>
-        <p>Déroulement d’une partie :</p>
+        <p class="title big">Déroulement d’une partie :</p>
         <p>Le Gabo se déroule en plusieurs manches.</p>
         <p>
           Au fil du jeu, les joueurs accumulent des points, soit à cause des
@@ -117,7 +126,7 @@ import ArticleArea from '../components/ArticleArea.vue';
         </ol>
       </div>
       <div>
-        <p>Déroulement d’une manche :</p>
+        <p class="title small">Déroulement d’une manche :</p>
         <p>
           Pour commencer, il faut un joueur qui coupe le jeu, un qui mélange, et
           un qui lance la manche.
@@ -210,7 +219,7 @@ import ArticleArea from '../components/ArticleArea.vue';
       </div>
       <ol>
         <li>
-          <span>Se défausser de ses cartes</span><br />
+          <span class="title small">Se défausser de ses cartes</span><br />
           Vos cartes sont comme des poids, qui vous tirent inexorablement vers
           le fond et dont il faut se débarrasser. Mais alors comment faire ?
           <br />
@@ -237,7 +246,7 @@ import ArticleArea from '../components/ArticleArea.vue';
           je le prends et m’en débarrasse – ouf c’est la bonne cette fois- ci.
         </li>
         <li>
-          <span>Echanger des cartes</span> <br />
+          <span class="title small">Echanger des cartes</span> <br />
           Au fil de la partie, ayez les yeux baladeurs ! Vous pourrez ainsi
           observer où les joueurs placent les cartes qui ont été prises dans la
           défausse. Ainsi, si vous voyez où votre adversaire de gauche place
@@ -247,7 +256,7 @@ import ArticleArea from '../components/ArticleArea.vue';
           aurez ainsi en votre possession des cartes de faible valeur.
         </li>
         <li>
-          <span>Dire « Gabo »</span>
+          <span class="title small">Dire « Gabo »</span>
           La manche se termine lorsqu’un des joueurs dit « Gabo » après son tour
           et avant que son voisin ne fasse une action. On ne peut pas dire «
           Gabo » au premier tour. De même, il n’est pas possible de dire « Gabo
@@ -277,7 +286,7 @@ import ArticleArea from '../components/ArticleArea.vue';
       </p>
 
       <div>
-        <p>Pouvoir des cartes :</p>
+        <p class="title big">Pouvoir des cartes :</p>
         <p>
           Lorsqu’un joueur pioche une des cartes suivantes, il peut utiliser ou
           non son pouvoir correspondant. S’il l’utilise alors la carte va dans
@@ -286,32 +295,32 @@ import ArticleArea from '../components/ArticleArea.vue';
         </p>
         <ul>
           <li>
-            La dame : elle permet de regarder 2 cartes de deux jeux différents
-            et de procéder (ou non) à un échange entre ces cartes, au choix du
-            joueur.
+            <span class="subtitle">La dame :</span>
+            elle permet de regarder 2 cartes de deux jeux différents et de procéder (ou non) à un échange entre ces cartes, au choix du joueur.
           </li>
           <li>
-            Le valet : il permet de procéder à un échange entre deux cartes de
-            deux jeux différents, sans les regarder.
+            <span class="subtitle">Le valet :</span>
+            il permet de procéder à un échange entre deux cartes de deux jeux différents, sans les regarder.
           </li>
           <li>
-            Le 8 : il permet de regarder une carte dans le jeu d’un adversaire.
+            <span class="subtitle">Le 8 :</span>
+            il permet de regarder une carte dans le jeu d’un adversaire.
           </li>
-          <li>Le 7 : il permet de regarder une carte dans son jeu.</li>
+          <li>
+            <span class="subtitle">Le 7 :</span>
+            il permet de regarder une carte dans son jeu.
+          </li>
         </ul>
-        <p>Valeur des cartes :</p>
+        <p class="title big">Valeur des cartes :</p>
         <ul>
           <li>
-            Le roi rouge est considéré comme la meilleure carte car sa valeur
-            est zéro.
+            <span class="subtitle">Le roi rouge</span> est considéré comme la meilleure carte car sa valeur est zéro.
           </li>
           <li>
-            Le roi noir est considéré comme la pire carte car elle a la valeur
-            la plus élevée, 25.
+            <span class="subtitle">Le roi noir</span> est considéré comme la pire carte car elle a la valeur la plus élevée, 25.
           </li>
           <li>
-            Les têtes valent 10 points, les cartes numérotées valent leur valeur
-            faciale, et enfin l’as vaut 1.
+            <span class="subtitle">Les têtes</span> valent 10 points, les cartes numérotées valent leur valeur faciale, et enfin l’as vaut 1.
           </li>
         </ul>
       </div>
@@ -322,5 +331,10 @@ import ArticleArea from '../components/ArticleArea.vue';
 <style scoped>
 .scrollable {
   overflow: auto;
+}
+
+.subMenu {
+  display: flex;
+  gap: 20px;
 }
 </style>
