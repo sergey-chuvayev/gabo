@@ -52,20 +52,25 @@ input {
   }
 }
 
-.subtitle {
-  font-family: 'Milonga', cursive;
-}
 
-.title {
+h1 {
   font-family: 'Milonga', cursive;
   margin-top: 32px;
   margin-bottom: 16px;
-}
-.big {
   font-size: 22px;
 }
-.small {
+h2 {
+  font-family: 'Milonga', cursive;
+  margin-top: 32px;
+  margin-bottom: 16px;
   font-size: 18px;
+}
+h3 {
+  font-family: 'Milonga', cursive;
+}
+
+.name {
+  font-family: 'Milonga', cursive;
 }
 
 .maillink {

@@ -5,9 +5,9 @@ import ArticleArea from '../components/ArticleArea.vue';
 <template>
   <ArticleArea>
     <div class="app_container__block">
-      <p class="title big">Variantes, us et coutumes :</p>
+      <h1>Variantes, us et coutumes :</h1>
       <div>
-        <p class="title small">1. Variante du « speed Gabo » :</p>
+        <h2>1. Variante du « speed Gabo » :</h2>
         <p>
           Comme son nom l’indique, la variante du «speed Gabo » introduit une
           nouvelle dimension au jeu : la vitesse.
@@ -33,7 +33,7 @@ import ArticleArea from '../components/ArticleArea.vue';
         </p>
       </div>
       <div>
-        <p class="title small">2. Variante dite « sévère » :</p>
+        <h2>2. Variante dite « sévère » :</h2>
         <p>
           Là aussi, tout est dans le nom : la variante « sévère » du Gabo ne
           vous fera pas de cadeau !
@@ -49,7 +49,7 @@ import ArticleArea from '../components/ArticleArea.vue';
         </p>
       </div>
       <div>
-        <p class="title small">3. Us et coutumes chinonais :</p>
+        <h2>3. Us et coutumes chinonais :</h2>
         <p>
           Dans le pays de Chinon, haut lieu d’exercice du Gabo, quelques
           habitudes de jeu se transmettent de générations en générations. En
@@ -74,7 +74,7 @@ import ArticleArea from '../components/ArticleArea.vue';
         </ul>
       </div>
       <div>
-        <p class="title small">4. Virgin Gabo :</p>
+        <h2>4. Virgin Gabo :</h2>
         <p>
           L’histoire chinonaise liée au Gabo n’indique pas une alcoolisation
           systématique lors des parties (et notamment lors de la « tournée » de
@@ -86,7 +86,7 @@ import ArticleArea from '../components/ArticleArea.vue';
         </p>
       </div>
       <div>
-        <p class="title small">5. Triche et Gabo :</p>
+        <h2>5. Triche et Gabo :</h2>
         <p>
           En plus du plaisir pris en commun, qui constitue sa raison d’être
           principale, le Gabo a aussi pour fonction de développer en chacun

@@ -5,17 +5,6 @@ import ArticleArea from '../components/ArticleArea.vue';
 <template>
   <ArticleArea>
     <div class="app_container__block">
-      <!-- TODO ici trop de texte > faire un sous menu -->
-      <!-- <div>
-        <ul class="subMenu">
-          <li>Déroulement d'une manche</li>
-          <li>Se défausser de ses cartes</li>
-          <li>Dire Gabo</li>
-          <li>Echanger des cartes</li>
-          <li>Pouvoir des cartes</li>
-        </ul>
-      </div> -->
-
       <div>
         <span class="subtitle">Matériel:</span> un jeu de 52 cartes. <br />
         <span class="subtitle">Ages des joueurs:</span> de 16 à 106 ans. <br />
@@ -26,7 +15,7 @@ import ArticleArea from '../components/ArticleArea.vue';
         Ricard, Suz’To’. <br />
       </div>
       <div>
-        <div class="title big">Préambule :</div>
+        <h1>Préambule :</h1>
         La volonté d’établir un Règlement Officiel du Gabo procède d’un constat
         simple : il n’existe aucun consensus quant aux règles du jeu. Son nom
         lui-même ne fait pas l’unanimité ! On parle ici de Guelsch, là de
@@ -84,7 +73,7 @@ import ArticleArea from '../components/ArticleArea.vue';
         <p>Puissent nos heures de plaisir prise à ce jeu lui rendre hommage!</p>
       </div>
       <div>
-        <p class="title big">Déroulement d’une partie :</p>
+        <h1>Déroulement d’une partie :</h1>
         <p>Le Gabo se déroule en plusieurs manches.</p>
         <p>
           Au fil du jeu, les joueurs accumulent des points, soit à cause des
@@ -126,7 +115,7 @@ import ArticleArea from '../components/ArticleArea.vue';
         </ol>
       </div>
       <div>
-        <p class="title small">Déroulement d’une manche :</p>
+        <h2>Déroulement d’une manche :</h2>
         <p>
           Pour commencer, il faut un joueur qui coupe le jeu, un qui mélange, et
           un qui lance la manche.
@@ -219,7 +208,7 @@ import ArticleArea from '../components/ArticleArea.vue';
       </div>
       <ol>
         <li>
-          <div class="title small">Se défausser de ses cartes</div>
+          <h2>Se défausser de ses cartes</h2>
           Vos cartes sont comme des poids, qui vous tirent inexorablement vers
           le fond et dont il faut se débarrasser. Mais alors comment faire ?
           <br />
@@ -246,7 +235,7 @@ import ArticleArea from '../components/ArticleArea.vue';
           je le prends et m’en débarrasse – ouf c’est la bonne cette fois- ci.
         </li>
         <li>
-          <div class="title small">Echanger des cartes</div>
+          <h2>Echanger des cartes</h2>
           Au fil de la partie, ayez les yeux baladeurs ! Vous pourrez ainsi
           observer où les joueurs placent les cartes qui ont été prises dans la
           défausse. Ainsi, si vous voyez où votre adversaire de gauche place
@@ -256,7 +245,7 @@ import ArticleArea from '../components/ArticleArea.vue';
           aurez ainsi en votre possession des cartes de faible valeur.
         </li>
         <li>
-          <div class="title small">Dire « Gabo »</div>
+          <h2>Dire « Gabo »</h2>
           La manche se termine lorsqu’un des joueurs dit « Gabo » après son tour
           et avant que son voisin ne fasse une action. On ne peut pas dire «
           Gabo » au premier tour. De même, il n’est pas possible de dire « Gabo
@@ -286,7 +275,7 @@ import ArticleArea from '../components/ArticleArea.vue';
       </p>
 
       <div>
-        <p class="title big">Pouvoir des cartes :</p>
+        <h1>Pouvoir des cartes :</h1>
         <p>
           Lorsqu’un joueur pioche une des cartes suivantes, il peut utiliser ou
           non son pouvoir correspondant. S’il l’utilise alors la carte va dans
@@ -312,7 +301,7 @@ import ArticleArea from '../components/ArticleArea.vue';
             il permet de regarder une carte dans son jeu.
           </li>
         </ul>
-        <p class="title big">Valeur des cartes :</p>
+        <h1>Valeur des cartes :</h1>
         <ul>
           <li>
             <span class="subtitle">Le roi rouge</span> est considéré comme la meilleure carte car sa valeur est zéro.
@@ -336,8 +325,4 @@ import ArticleArea from '../components/ArticleArea.vue';
   overflow: auto;
 }
 
-.subMenu {
-  display: flex;
-  gap: 20px;
-}
 </style>
