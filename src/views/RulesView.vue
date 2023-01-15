@@ -6,7 +6,7 @@ import ArticleArea from '../components/ArticleArea.vue';
   <ArticleArea>
     <div class="app_container__block">
       <!-- TODO ici trop de texte > faire un sous menu -->
-      <div>
+      <!-- <div>
         <ul class="subMenu">
           <li>Déroulement d'une manche</li>
           <li>Se défausser de ses cartes</li>
@@ -14,7 +14,7 @@ import ArticleArea from '../components/ArticleArea.vue';
           <li>Echanger des cartes</li>
           <li>Pouvoir des cartes</li>
         </ul>
-      </div>
+      </div> -->
 
       <div>
         <span class="subtitle">Matériel:</span> un jeu de 52 cartes. <br />
@@ -26,7 +26,7 @@ import ArticleArea from '../components/ArticleArea.vue';
         Ricard, Suz’To’. <br />
       </div>
       <div>
-        <span class="subtitle">Préambule :</span>
+        <div class="title big">Préambule :</div>
         La volonté d’établir un Règlement Officiel du Gabo procède d’un constat
         simple : il n’existe aucun consensus quant aux règles du jeu. Son nom
         lui-même ne fait pas l’unanimité ! On parle ici de Guelsch, là de
@@ -219,7 +219,7 @@ import ArticleArea from '../components/ArticleArea.vue';
       </div>
       <ol>
         <li>
-          <span class="title small">Se défausser de ses cartes</span><br />
+          <div class="title small">Se défausser de ses cartes</div>
           Vos cartes sont comme des poids, qui vous tirent inexorablement vers
           le fond et dont il faut se débarrasser. Mais alors comment faire ?
           <br />
@@ -246,7 +246,7 @@ import ArticleArea from '../components/ArticleArea.vue';
           je le prends et m’en débarrasse – ouf c’est la bonne cette fois- ci.
         </li>
         <li>
-          <span class="title small">Echanger des cartes</span> <br />
+          <div class="title small">Echanger des cartes</div>
           Au fil de la partie, ayez les yeux baladeurs ! Vous pourrez ainsi
           observer où les joueurs placent les cartes qui ont été prises dans la
           défausse. Ainsi, si vous voyez où votre adversaire de gauche place
@@ -256,7 +256,7 @@ import ArticleArea from '../components/ArticleArea.vue';
           aurez ainsi en votre possession des cartes de faible valeur.
         </li>
         <li>
-          <span class="title small">Dire « Gabo »</span>
+          <div class="title small">Dire « Gabo »</div>
           La manche se termine lorsqu’un des joueurs dit « Gabo » après son tour
           et avant que son voisin ne fasse une action. On ne peut pas dire «
           Gabo » au premier tour. De même, il n’est pas possible de dire « Gabo
@@ -296,7 +296,8 @@ import ArticleArea from '../components/ArticleArea.vue';
         <ul>
           <li>
             <span class="subtitle">La dame :</span>
-            elle permet de regarder 2 cartes de deux jeux différents et de procéder (ou non) à un échange entre ces cartes, au choix du joueur.
+            elle permet de regarder 2 cartes de deux jeux différents et de procéder (ou non) à un échange entre ces
+            cartes, au choix du joueur.
           </li>
           <li>
             <span class="subtitle">Le valet :</span>
@@ -317,10 +318,12 @@ import ArticleArea from '../components/ArticleArea.vue';
             <span class="subtitle">Le roi rouge</span> est considéré comme la meilleure carte car sa valeur est zéro.
           </li>
           <li>
-            <span class="subtitle">Le roi noir</span> est considéré comme la pire carte car elle a la valeur la plus élevée, 25.
+            <span class="subtitle">Le roi noir</span> est considéré comme la pire carte car elle a la valeur la plus
+            élevée, 25.
           </li>
           <li>
-            <span class="subtitle">Les têtes</span> valent 10 points, les cartes numérotées valent leur valeur faciale, et enfin l’as vaut 1.
+            <span class="subtitle">Les têtes</span> valent 10 points, les cartes numérotées valent leur valeur faciale,
+            et enfin l’as vaut 1.
           </li>
         </ul>
       </div>

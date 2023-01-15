@@ -5,11 +5,11 @@ import ArticleArea from "../components/ArticleArea.vue";
 <template>
   <ArticleArea>
     <div class="app_container__block">
-      <p>
-        <span class="title small">Comité Officiel de l'Amicale du Gabo</span>, historiquement situé à Chinon
-        (37500).
-      </p>
-      <a href="mailto:amicale.gabo@gmail.com">mail : amicale.gabo@gmail.com</a>
+      <div>
+        <div class="title big">Comité Officiel de l'Amicale du Gabo</div>
+        historiquement situé à Chinon (37500).
+      </div>
+      <a class="maillink" href="mailto:amicale.gabo@gmail.com">mail : amicale.gabo@gmail.com</a>
       <!-- TODO mailto link -->
     </div>
   </ArticleArea>

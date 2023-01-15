@@ -63,7 +63,7 @@ const startGame = () => {
 
 <template>
   <div class="container">
-    <h1>Ajouter un joueur</h1>
+    <h1 class="title big">Ajouter un joueur</h1>
     <form v-on:submit.prevent="addPlayer">
       <div class="input">
         <label for="name"

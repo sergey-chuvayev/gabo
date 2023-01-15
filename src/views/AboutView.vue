@@ -12,7 +12,7 @@ import ArticleArea from "../components/ArticleArea.vue";
         <li><span class="subtitle">M. Delain</span> - Trésorier</li>
       </ul>
       <div>
-        Pour devenir membre, une participation symbolique d'un euro (1€) est
+        Pour devenir membre, une participation symbolique d'un euro est
         nécessaire.
       </div>
 

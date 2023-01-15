@@ -58,6 +58,8 @@ input {
 
 .title {
   font-family: 'Milonga', cursive;
+  margin-top: 32px;
+  margin-bottom: 16px;
 }
 .big {
   font-size: 22px;
@@ -65,3 +67,9 @@ input {
 .small {
   font-size: 18px;
 }
+
+.maillink {
+  color: black;
+  text-decoration: underline;
+}
+
