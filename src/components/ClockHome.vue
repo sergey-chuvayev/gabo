@@ -40,6 +40,7 @@ setInterval(() => {
   background-size: 100% 100%;
   margin: 16px 0;
   margin-bottom: 0;
+  flex-shrink: 0;
 }
 .arrow {
   width: 35%;
