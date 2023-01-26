@@ -11,10 +11,13 @@ setInterval(() => {
   minutesAngle.value = (360 / 60) * time.getMinutes();
   hoursAngle.value = (360 / 12) * time.getHours();
 }, 1000);
+const isComputerDevice = screen.width >= 992 ? true : false;
+console.log('isComputerDevice in Home:', isComputerDevice)
+
 </script>
 
 <template>
-  <div class="app_container__block">
+  <!-- <div class="app_container__block">
     <div class="home">
       <img src="/logo.svg" class="home__logo mb-6" />
       <div class="home__title">
@@ -32,7 +35,8 @@ setInterval(() => {
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+  <div></div>
 </template>
 
 <style scoped>
@@ -77,5 +81,15 @@ setInterval(() => {
   font-size: 26px;
   line-height: 31px;
   margin-top: 30px;
+}
+
+
+@media only screen and (min-width: 992px) {
+  .home {
+    flex-direction: row;
+    align-items: top;
+    height: 200px;
+  }
+  /* //to do : continue reflexion about computer screen display > menu always present */
 }
 </style>
