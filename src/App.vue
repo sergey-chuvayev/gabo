@@ -59,7 +59,7 @@ console.log('isComputerDevice:', isComputerDevice)
   border-top: 2px solid var(--color-dark);
   position: absolute;
   bottom: 0;
-  padding-top: 12px;
+  padding-top: 8px;
 }
 
 .app_container__computer__content {

@@ -42,7 +42,7 @@ import ClockHomeVue from "@/components/ClockHome.vue";
 
 <style scoped>
 .menu-container {
-  top: -35px;
+  top: -24px;
   width: 100%;
   list-style: none;
   display: flex;
@@ -50,7 +50,6 @@ import ClockHomeVue from "@/components/ClockHome.vue";
   justify-content: space-between;
   align-items: center;
   margin: 0;
-  padding: 16px;
 }
 
 
