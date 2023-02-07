@@ -30,6 +30,11 @@ const handleEndRoundClick = () => {
   }
 };
 
+const handleResetGame = () => {
+  // show modal first "Are you sure to end and reset the game?"
+  store.resetGame();
+};
+
 onBeforeMount(() => {
   if (players.value.length === 0) {
     router.push("/game/registration");
@@ -69,6 +74,9 @@ const checkSomePlayersHaveNoGabo = () => {
     </div>
     <ButtonRedesigned @click="handleEndRoundClick" class="end-round">
       Prochaine manche
+    </ButtonRedesigned>
+    <ButtonRedesigned variant="ghost" @click="handleResetGame" class="mt-2">
+      Reset game
     </ButtonRedesigned>
     <div v-if="allPlayersHaveZeroPoints || somePlayersHaveNoGabo" class="issue">
       Vous devez indiquer le nombre de points de chaque joueur et désigner qui a

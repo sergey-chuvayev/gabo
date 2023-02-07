@@ -33,6 +33,7 @@ export const useMainStore = defineStore({
       this.rounds = [];
       this.userNamesWithReductionPoints = [];
       this.currentRound = 0;
+      router.push("/game/registration");
     },
     setUserNameWithReductionPoints(userName: string) {
       this.userNamesWithReductionPoints = [
