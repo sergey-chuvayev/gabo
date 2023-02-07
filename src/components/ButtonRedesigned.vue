@@ -1,7 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+type Props = {
+  variant?: "primary" | "ghost";
+};
+const props = withDefaults(defineProps<Props>(), {
+  variant: "primary",
+});
+</script>
 
 <template>
-  <button class="button">
+  <button class="button" :class="props.variant === 'ghost' ? 'ghost' : ''">
     <slot></slot>
   </button>
 </template>
@@ -22,6 +29,9 @@
   text-transform: uppercase;
   touch-action: manipulation;
   color: var(--color-dark);
+}
+.button.ghost {
+  background: none;
 }
 .button:active {
   box-shadow: 1px 1px 0px var(--color-dark);
