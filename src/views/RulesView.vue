@@ -5,74 +5,82 @@ import ArticleArea from '../components/ArticleArea.vue';
 <template>
   <ArticleArea>
     <div class="app_container__block">
-      <div>
-        <span class="subtitle">Matériel:</span> un jeu de 52 cartes. <br />
-        <span class="subtitle">Ages des joueurs:</span> de 16 à 106 ans. <br />
-        <span class="subtitle">Nombre de joueurs:</span> 3 à 8 joueurs. <br />
-        <span class="subtitle">Conditions météorologiques:</span> Bonne
-        luminosité, peu de vent, pas de pluie. <br />
-        <span class="subtitle">Accessoires / Bonus:</span> Au choix, bière,
-        Ricard, Suz’To’. <br />
+      <div class="app_container__block-box box-1">
+        <div class="app_container__block-box__content">
+          <div>
+            <span class="subtitle">Matériel:</span> un jeu de 52 cartes. <br />
+            <span class="subtitle">Ages des joueurs:</span> de 16 à 106 ans. <br />
+            <span class="subtitle">Nombre de joueurs:</span> 3 à 8 joueurs. <br />
+            <span class="subtitle">Conditions météorologiques:</span> Bonne
+            luminosité, peu de vent, pas de pluie. <br />
+            <span class="subtitle">Accessoires / Bonus:</span> Au choix, bière,
+            Ricard, Suz’To’. <br />
+          </div>
+          <div>
+            <h1>Préambule :</h1>
+            La volonté d’établir un Règlement Officiel du Gabo procède d’un constat
+            simple : il n’existe aucun consensus quant aux règles du jeu. Son nom
+            lui-même ne fait pas l’unanimité ! On parle ici de Guelsch, là de
+            Tamalou, voire de Dutch… Cette diversité de règles et d’appellations
+            nuit au Gabo et à son expansion. Elle sème la confusion parmi des
+            joueurs, pourtant volontaires, et ne contribue pas à élargir la base de
+            nos membres adhérents et actifs. Tel est le problème auquel
+            l’établissement d’une Règle Officielle apporte une solution.
+          </div>
+          <div>
+            <p>
+              Pouvant être rattaché à de nombreuses choses – par exemple, à une île
+              au large des côtes australiennes qui porte son nom –, il nous semble
+              pertinent, pour commencer, de préciser à quoi le terme « Gabo » fait
+              d’après nous référence et pourquoi, parmi toutes les dénominations
+              évoquées plus haut, c’est à celle-ci que va notre préférence. « Gabo »
+              est le surnom d’un homme, celui d’un écrivain colombien célèbre,
+              lauréat du prix Nobel de littérature en 1982, dont l’œuvre la plus
+              connue est Cent ans de Solitude : Gabriel García Márquez.
+            </p>
+            <p>
+              Penchons-nous davantage sur l’engagement politique de « Gabo » qui
+              nous intéresse au premier chef. Dans son ouvrage García Márquez : The
+              Man and His Work, Gene H. Bell-Villada, l’un de ses biographes,
+              précise : « De la même façon que sa carrière d'écrivain s'est
+              construite à ses débuts par une opposition assumée au statu quo
+              littéraire colombien, les opinions socialistes et anti- impérialistes
+              de García Márquez se sont construites en opposition au statu quo
+              global dominé par les États-Unis ».
+            </p>
+            <p>
+              C’est donc comme révolutionnaire que « Gabo» s’est illustré au côté,
+              entre autres, de Fidel Castro et de Régis Debray. Pour défendre la
+              cause qui lui paraît juste, celle de la Révolution et de la liberté,
+              il n’hésite pas à mettre la main au portefeuille. C’est ainsi qu’en
+              1972, lorsqu’il reçoit le prix international de littérature Rómulo
+              Gallegos, il donne l’intégralité de l’argent reçu avec ce prix au
+              parti vénézuélien Movimiento al Socialismo (« Mouvement vers le
+              socialisme »). Ce geste n’aura pas manqué de susciter de nombreuses
+              critiques (bien que l'argent en question n’aura servi qu’au
+              financement du magazine politique du MAS et non à sa guérilla); quant
+              à nous, nous préférons y voir le signe d’un engagement sans faille et
+              d’une générosité sans réserve.
+            </p>
+            <p>
+              De sources sûres, nous savons que Gabriel Garcia Marquez fût un joueur
+              de cartes invétéré, notamment avec les révolutionnaires vénézuéliens
+              lors de l’écriture de Cent ans de Solitude. A l’évidence, il aurait
+              aimé le jeu que nous représentons et dans lequel sont à l’honneur la
+              stratégie, la prise de risque et l’amitié - autant de valeurs qui
+              comptaient à ses yeux. C’est donc pour s’inscrire dans la filiation de
+              cet illustre personnage que l’Amicale du Gabo souhaite officialiser
+              l’appellation « Gabo ».
+            </p>
+            <p>Puissent nos heures de plaisir prise à ce jeu lui rendre hommage!</p>
+          </div>
+        </div>
+        <img class="app_container__block-box__img" src="https://i.pinimg.com/474x/12/94/06/1294063ce975be8942bf5c47b4192d94.jpg"/>
       </div>
-      <div>
-        <h1>Préambule :</h1>
-        La volonté d’établir un Règlement Officiel du Gabo procède d’un constat
-        simple : il n’existe aucun consensus quant aux règles du jeu. Son nom
-        lui-même ne fait pas l’unanimité ! On parle ici de Guelsch, là de
-        Tamalou, voire de Dutch… Cette diversité de règles et d’appellations
-        nuit au Gabo et à son expansion. Elle sème la confusion parmi des
-        joueurs, pourtant volontaires, et ne contribue pas à élargir la base de
-        nos membres adhérents et actifs. Tel est le problème auquel
-        l’établissement d’une Règle Officielle apporte une solution.
-      </div>
-      <div>
-        <p>
-          Pouvant être rattaché à de nombreuses choses – par exemple, à une île
-          au large des côtes australiennes qui porte son nom –, il nous semble
-          pertinent, pour commencer, de préciser à quoi le terme « Gabo » fait
-          d’après nous référence et pourquoi, parmi toutes les dénominations
-          évoquées plus haut, c’est à celle-ci que va notre préférence. « Gabo »
-          est le surnom d’un homme, celui d’un écrivain colombien célèbre,
-          lauréat du prix Nobel de littérature en 1982, dont l’œuvre la plus
-          connue est Cent ans de Solitude : Gabriel García Márquez.
-        </p>
-        <p>
-          Penchons-nous davantage sur l’engagement politique de « Gabo » qui
-          nous intéresse au premier chef. Dans son ouvrage García Márquez : The
-          Man and His Work, Gene H. Bell-Villada, l’un de ses biographes,
-          précise : « De la même façon que sa carrière d'écrivain s'est
-          construite à ses débuts par une opposition assumée au statu quo
-          littéraire colombien, les opinions socialistes et anti- impérialistes
-          de García Márquez se sont construites en opposition au statu quo
-          global dominé par les États-Unis ».
-        </p>
-        <p>
-          C’est donc comme révolutionnaire que « Gabo» s’est illustré au côté,
-          entre autres, de Fidel Castro et de Régis Debray. Pour défendre la
-          cause qui lui paraît juste, celle de la Révolution et de la liberté,
-          il n’hésite pas à mettre la main au portefeuille. C’est ainsi qu’en
-          1972, lorsqu’il reçoit le prix international de littérature Rómulo
-          Gallegos, il donne l’intégralité de l’argent reçu avec ce prix au
-          parti vénézuélien Movimiento al Socialismo (« Mouvement vers le
-          socialisme »). Ce geste n’aura pas manqué de susciter de nombreuses
-          critiques (bien que l'argent en question n’aura servi qu’au
-          financement du magazine politique du MAS et non à sa guérilla); quant
-          à nous, nous préférons y voir le signe d’un engagement sans faille et
-          d’une générosité sans réserve.
-        </p>
-        <p>
-          De sources sûres, nous savons que Gabriel Garcia Marquez fût un joueur
-          de cartes invétéré, notamment avec les révolutionnaires vénézuéliens
-          lors de l’écriture de Cent ans de Solitude. A l’évidence, il aurait
-          aimé le jeu que nous représentons et dans lequel sont à l’honneur la
-          stratégie, la prise de risque et l’amitié - autant de valeurs qui
-          comptaient à ses yeux. C’est donc pour s’inscrire dans la filiation de
-          cet illustre personnage que l’Amicale du Gabo souhaite officialiser
-          l’appellation « Gabo ».
-        </p>
-        <p>Puissent nos heures de plaisir prise à ce jeu lui rendre hommage!</p>
-      </div>
-      <div>
+    </div>
+    <div class="app_container__block-box box-2">
+      <img class="app_container__block-box__img" src="https://i.pinimg.com/474x/12/94/06/1294063ce975be8942bf5c47b4192d94.jpg"/>
+      <div class="app_container__block-box__content">
         <h1>Déroulement d’une partie :</h1>
         <p>Le Gabo se déroule en plusieurs manches.</p>
         <p>
@@ -114,7 +122,11 @@ import ArticleArea from '../components/ArticleArea.vue';
           </li>
         </ol>
       </div>
-      <div>
+    </div>
+    <div>
+    </div>
+    <div class="app_container__block-box box-1">
+      <div class="app_container__block-box__content">
         <h2>Déroulement d’une manche :</h2>
         <p>
           Pour commencer, il faut un joueur qui coupe le jeu, un qui mélange, et
@@ -201,80 +213,89 @@ import ArticleArea from '../components/ArticleArea.vue';
           qu’à une seule opération : l’intégrer à son jeu en la substituant à
           une autre carte. Son tour prend alors fin.
         </p>
+        <div>
+          Le but du jeu étant d’avoir le moins de point à la fin d’une manche,
+          nous allons voir les différents moyens pour y parvenir:
+        </div>
       </div>
-      <div>
-        Le but du jeu étant d’avoir le moins de point à la fin d’une manche,
-        nous allons voir les différents moyens pour y parvenir:
+      <img class="app_container__block-box__img" src="https://i.pinimg.com/474x/12/94/06/1294063ce975be8942bf5c47b4192d94.jpg"/>
+    </div>
+    <div class="app_container__block-box box-2">
+      <img class="app_container__block-box__img" src="https://i.pinimg.com/474x/12/94/06/1294063ce975be8942bf5c47b4192d94.jpg"/>
+      <div class="app_container__block-box__content">
+        <ol>
+          <li>
+            <h2>Se défausser de ses cartes</h2>
+            Vos cartes sont comme des poids, qui vous tirent inexorablement vers
+            le fond et dont il faut se débarrasser. Mais alors comment faire ?
+            <br />
+            Lorsqu’un joueur se défausse d’une carte dont la valeur correspond à
+            une de vos cartes, alors vous pouvez vous en défausser, même si ce
+            n’est pas votre tour de jeu et ce autant de fois que vous avez de
+            cartes correspondantes ; si j’ai trois valets dans mon jeu, je peux me
+            débarrasser des trois d’un coup. De cette manière vous réduisez le
+            nombre de cartes (et donc de points) en votre possession. <br />
+            Lorsque le nombre de vos cartes tombe à zéro, vous sortez du jeu, vous
+            ne piocher plus de carte à votre tour et pouvez tranquillement
+            profiter de votre cocktail – lors du décompte final, votre score sera
+            de 0 point (que soit remerciés ici les joueurs investis qui ont
+            défendu, « contre vents et marées », cette règle si précieuse; ils se
+            reconnaîtront). <br />
+            Attention : lorsqu’un joueur se trompe dans la carte sélectionnée dans
+            son jeu pour s’en défausser, il doit piocher une carte supplémentaire
+            qu’il dispose devant lui face cachée. Si par exemple un 2 est déposé
+            par un adversaire et que, persuadé d’avoir moi aussi un 2 dans mon
+            jeu, je saisis une carte qui s’avère être un 8, alors je garde mon 8
+            et je pioche une carte supplémentaire. Cela dit si le joueur se
+            remémore le bon emplacement de la carte dont il voulait se défausser,
+            il est en droit de la jouer ; je me souviens que mon 2 est ailleurs,
+            je le prends et m’en débarrasse – ouf c’est la bonne cette fois- ci.
+          </li>
+          <li>
+            <h2>Echanger des cartes</h2>
+            Au fil de la partie, ayez les yeux baladeurs ! Vous pourrez ainsi
+            observer où les joueurs placent les cartes qui ont été prises dans la
+            défausse. Ainsi, si vous voyez où votre adversaire de gauche place
+            l’As qu’il vient de ramasser dans la défausse, vous pourrez vous en
+            emparer grâce au pouvoir du valet ou de la reine par exemple – à
+            condition de piocher l’une de ces cartes à votre tour bien-sûr. Vous
+            aurez ainsi en votre possession des cartes de faible valeur.
+          </li>
+          <li>
+            <h2>Dire « Gabo »</h2>
+            La manche se termine lorsqu’un des joueurs dit « Gabo » après son tour
+            et avant que son voisin ne fasse une action. On ne peut pas dire «
+            Gabo » au premier tour. De même, il n’est pas possible de dire « Gabo
+            » lorsqu’on s’est défaussé de toutes ses cartes. Une fois le « Gabo »
+            prononcé par le joueur, son jeu est gelé et plus personne ne peut y
+            toucher. Il reste alors un dernier tour aux joueurs pour qu’ils se
+            débarrassent d’un maximum de points avant le décompte final. A la fin
+            de la partie, tous les joueurs dévoilent leurs cartes. <br />
+            Si le joueur qui a prononcé « Gabo » a le score le plus faible, alors
+            son score est de –5, auquel on soustrait la valeur numéraire des
+            cartes en sa possession (par exemple, je termine une manche par un «
+            Gabo » avec un 2 dans ma main : je réalise un score de -5 – 2 = -7).
+            S’il est ex-aequo avec un autre joueur, son score est de 0. S’il n’a
+            pas le score le plus faible son score est de 15.<br />
+            Attention : lors du décompte final, on ne tient pas compte du score de
+            ceux qui s’étaient débarrassés de toutes leurs cartes avant que le «
+            Gabo » ne soit annoncé. En revanche, si après que le « Gabo » ait été
+            annoncé, certains joueurs parviennent à se débarrasser de toutes leurs
+            cartes, on tient compte de leur score, à savoir 0, pour déterminer si
+            le « Gabo » est réussi ou non.
+          </li>
+        </ol>
+        <p>
+          Lorsqu’un joueur arrive à obtenir le score de 100 tout pile après une
+          manche, son score redescend automatiquement à 50. Cette opération n’est
+          possible qu’une fois par joueur et par partie.
+        </p>
       </div>
-      <ol>
-        <li>
-          <h2>Se défausser de ses cartes</h2>
-          Vos cartes sont comme des poids, qui vous tirent inexorablement vers
-          le fond et dont il faut se débarrasser. Mais alors comment faire ?
-          <br />
-          Lorsqu’un joueur se défausse d’une carte dont la valeur correspond à
-          une de vos cartes, alors vous pouvez vous en défausser, même si ce
-          n’est pas votre tour de jeu et ce autant de fois que vous avez de
-          cartes correspondantes ; si j’ai trois valets dans mon jeu, je peux me
-          débarrasser des trois d’un coup. De cette manière vous réduisez le
-          nombre de cartes (et donc de points) en votre possession. <br />
-          Lorsque le nombre de vos cartes tombe à zéro, vous sortez du jeu, vous
-          ne piocher plus de carte à votre tour et pouvez tranquillement
-          profiter de votre cocktail – lors du décompte final, votre score sera
-          de 0 point (que soit remerciés ici les joueurs investis qui ont
-          défendu, « contre vents et marées », cette règle si précieuse; ils se
-          reconnaîtront). <br />
-          Attention : lorsqu’un joueur se trompe dans la carte sélectionnée dans
-          son jeu pour s’en défausser, il doit piocher une carte supplémentaire
-          qu’il dispose devant lui face cachée. Si par exemple un 2 est déposé
-          par un adversaire et que, persuadé d’avoir moi aussi un 2 dans mon
-          jeu, je saisis une carte qui s’avère être un 8, alors je garde mon 8
-          et je pioche une carte supplémentaire. Cela dit si le joueur se
-          remémore le bon emplacement de la carte dont il voulait se défausser,
-          il est en droit de la jouer ; je me souviens que mon 2 est ailleurs,
-          je le prends et m’en débarrasse – ouf c’est la bonne cette fois- ci.
-        </li>
-        <li>
-          <h2>Echanger des cartes</h2>
-          Au fil de la partie, ayez les yeux baladeurs ! Vous pourrez ainsi
-          observer où les joueurs placent les cartes qui ont été prises dans la
-          défausse. Ainsi, si vous voyez où votre adversaire de gauche place
-          l’As qu’il vient de ramasser dans la défausse, vous pourrez vous en
-          emparer grâce au pouvoir du valet ou de la reine par exemple – à
-          condition de piocher l’une de ces cartes à votre tour bien-sûr. Vous
-          aurez ainsi en votre possession des cartes de faible valeur.
-        </li>
-        <li>
-          <h2>Dire « Gabo »</h2>
-          La manche se termine lorsqu’un des joueurs dit « Gabo » après son tour
-          et avant que son voisin ne fasse une action. On ne peut pas dire «
-          Gabo » au premier tour. De même, il n’est pas possible de dire « Gabo
-          » lorsqu’on s’est défaussé de toutes ses cartes. Une fois le « Gabo »
-          prononcé par le joueur, son jeu est gelé et plus personne ne peut y
-          toucher. Il reste alors un dernier tour aux joueurs pour qu’ils se
-          débarrassent d’un maximum de points avant le décompte final. A la fin
-          de la partie, tous les joueurs dévoilent leurs cartes. <br />
-          Si le joueur qui a prononcé « Gabo » a le score le plus faible, alors
-          son score est de –5, auquel on soustrait la valeur numéraire des
-          cartes en sa possession (par exemple, je termine une manche par un «
-          Gabo » avec un 2 dans ma main : je réalise un score de -5 – 2 = -7).
-          S’il est ex-aequo avec un autre joueur, son score est de 0. S’il n’a
-          pas le score le plus faible son score est de 15.<br />
-          Attention : lors du décompte final, on ne tient pas compte du score de
-          ceux qui s’étaient débarrassés de toutes leurs cartes avant que le «
-          Gabo » ne soit annoncé. En revanche, si après que le « Gabo » ait été
-          annoncé, certains joueurs parviennent à se débarrasser de toutes leurs
-          cartes, on tient compte de leur score, à savoir 0, pour déterminer si
-          le « Gabo » est réussi ou non.
-        </li>
-      </ol>
-      <p>
-        Lorsqu’un joueur arrive à obtenir le score de 100 tout pile après une
-        manche, son score redescend automatiquement à 50. Cette opération n’est
-        possible qu’une fois par joueur et par partie.
-      </p>
+    </div>
 
-      <div>
+
+    <div class="app_container__block-box box-1">
+      <div class="app_container__block-box__content">
         <h1>Pouvoir des cartes :</h1>
         <p>
           Lorsqu’un joueur pioche une des cartes suivantes, il peut utiliser ou
@@ -316,6 +337,7 @@ import ArticleArea from '../components/ArticleArea.vue';
           </li>
         </ul>
       </div>
+      <img class="app_container__block-box__img" src="https://i.pinimg.com/474x/12/94/06/1294063ce975be8942bf5c47b4192d94.jpg"/>
     </div>
   </ArticleArea>
 </template>
@@ -325,4 +347,10 @@ import ArticleArea from '../components/ArticleArea.vue';
   overflow: auto;
 }
 
+.app_container__block-box {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-top: 30px;
+}
 </style>

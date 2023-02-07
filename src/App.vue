@@ -52,7 +52,8 @@ console.log('isComputerDevice:', isComputerDevice)
 
 .app_container__computer {
   z-index: calc(var(--menu-z) - 1);
-  width: 100%;
+  width: 1100px;
+  margin: 0 auto;
 }
 
 .app_container__computer__footer {
@@ -63,6 +64,7 @@ console.log('isComputerDevice:', isComputerDevice)
 }
 
 .app_container__computer__content {
+  /* width: 50%; */
   position: absolute;
   top: 250px;
   height: calc(100% - (260px + 48px));
