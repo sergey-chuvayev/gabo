@@ -6,6 +6,7 @@ import PlayerItem from "./PlayerItem.vue";
 import ButtonRedesigned from "./ButtonRedesigned.vue";
 import useSound from "vue-use-sound";
 import endRoundSound from "../assets/endRound.wav";
+import ResetGameConfirmView from "./ResetGameConfirmView.vue";
 
 const store = useMainStore();
 const [playEndRoundSound] = useSound(endRoundSound);
@@ -30,10 +31,11 @@ const handleEndRoundClick = () => {
   }
 };
 
-const handleResetGame = () => {
-  // show modal first "Are you sure to end and reset the game?"
-  store.resetGame();
-};
+let isResetGameModalHidden = ref<boolean>(true);
+
+watch(router.currentRoute, () => {
+  isResetGameModalHidden.value = true;
+});
 
 onBeforeMount(() => {
   if (players.value.length === 0) {
@@ -46,6 +48,13 @@ watch(currentRound, () => {
   somePlayersHaveNoGabo.value = false;
 });
 
+const handleResetGame = () => {
+  console.log('resetmodal')
+  isResetGameModalHidden.value = false;
+};
+const closeMenu = () => {
+  isResetGameModalHidden.value = true;
+};
 const checkAllPlayersHaveZeroPoints = () => {
   return [...rounds.value[currentRound.value].values()].every(
     (value) => value.points === 0
@@ -83,6 +92,7 @@ const checkSomePlayersHaveNoGabo = () => {
       prononcé Gabo
     </div>
   </div>
+  <ResetGameConfirmView @onClose="closeMenu" :isOpen="!isResetGameModalHidden"/>
 </template>
 
 <style scoped>
