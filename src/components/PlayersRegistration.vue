@@ -14,7 +14,9 @@ let errNumberOfPlayers = ref<string>("");
 const store = useMainStore();
 
 onBeforeMount(() => {
-  store.resetGame();
+  if (store.players.length > 0) {
+    router.push("/game/round");
+  }
 });
 
 const addPlayer = () => {
