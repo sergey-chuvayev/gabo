@@ -20,6 +20,9 @@ let somePlayersHaveNoGabo = ref(false);
 const onPlayerSaidGabo = (playerName: string) => {
   store.setPlayerRoundGabo(playerName);
 };
+const onTogglePlayerSaidNoCards = (playerName: string) => {
+  store.setTogglePlayerRoundNoCards(playerName);
+};
 const handleEndRoundClick = () => {
   if (checkAllPlayersHaveZeroPoints() || checkSomePlayersHaveNoGabo()) {
     allPlayersHaveZeroPoints.value = checkAllPlayersHaveZeroPoints();
@@ -68,7 +71,9 @@ const checkSomePlayersHaveNoGabo = () => {
           :points="rounds[currentRound].get(player.name)!.points"
           :player="player"
           :saidGabo="rounds[currentRound].get(player.name)!.saidGabo"
+          :hasNoCards="rounds[currentRound].get(player.name)!.hasNoCards"
           @onPlayerSaidGabo="onPlayerSaidGabo"
+          @onTogglePlayerSaidNoCards="onTogglePlayerSaidNoCards"
         />
       </div>
     </div>

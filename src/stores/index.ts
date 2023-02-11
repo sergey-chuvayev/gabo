@@ -49,7 +49,10 @@ export const useMainStore = defineStore({
       }));
       const round = new Map(
         this.players.map((player) => {
-          return [player.name, { points: 0, saidGabo: false }];
+          return [
+            player.name,
+            { points: 0, saidGabo: false, hasNoCards: false },
+          ];
         })
       );
       this.rounds = [round];
@@ -59,6 +62,7 @@ export const useMainStore = defineStore({
       currentRound.set(playerName, {
         points: currentRound.get(playerName)!.points + 1,
         saidGabo: currentRound.get(playerName)!.saidGabo,
+        hasNoCards: currentRound.get(playerName)!.hasNoCards,
       });
     },
     decrementPlayerRoundPoints(playerName: string) {
@@ -66,6 +70,7 @@ export const useMainStore = defineStore({
       currentRound.set(playerName, {
         points: currentRound.get(playerName)!.points - 1,
         saidGabo: currentRound.get(playerName)!.saidGabo,
+        hasNoCards: currentRound.get(playerName)!.hasNoCards,
       });
     },
     setPlayerRoundGabo(playerName: string) {
@@ -74,11 +79,20 @@ export const useMainStore = defineStore({
         currentRound.set(key, {
           points: currentRound.get(key)!.points,
           saidGabo: false,
+          hasNoCards: currentRound.get(key)!.hasNoCards,
         });
       });
       currentRound.set(playerName, {
         points: currentRound.get(playerName)!.points,
         saidGabo: true,
+        hasNoCards: currentRound.get(playerName)!.hasNoCards,
+      });
+    },
+    setTogglePlayerRoundNoCards(playerName: string) {
+      const currentRound = this.rounds[this.currentRound];
+      currentRound.set(playerName, {
+        ...currentRound.get(playerName)!,
+        hasNoCards: !currentRound.get(playerName)!.hasNoCards,
       });
     },
     endRound() {
