@@ -3,6 +3,7 @@ import router from "@/router";
 import { onBeforeMount, ref } from "vue";
 import { useMainStore } from "../stores";
 import ButtonRedesigned from "./ButtonRedesigned.vue";
+import Modal from "./ui/Modal.vue";
 
 const MAX_PLAYERS = 10;
 
@@ -64,6 +65,23 @@ const startGame = () => {
 </script>
 
 <template>
+  <Modal :isOpen="false" title="Some timte is here">
+    <div>Some desctiotion</div>
+    <ButtonRedesigned
+      v-if="players.length <= MAX_PLAYERS - 2"
+      type="submit"
+      class="button-next-player"
+    >
+      Joueur suivant
+    </ButtonRedesigned>
+    <ButtonRedesigned
+      v-if="players.length <= MAX_PLAYERS - 2"
+      type="submit"
+      class="button-next-player"
+    >
+      Joueur suivant
+    </ButtonRedesigned>
+  </Modal>
   <div class="container">
     <h1>Ajouter un joueur</h1>
     <form v-on:submit.prevent="addPlayer">
