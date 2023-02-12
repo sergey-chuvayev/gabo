@@ -41,7 +41,7 @@ const handlePlayerSaidNoCards = (playerName: string) => {
 
 <template>
   <div class="container">
-    <div class="top">
+    <div class="top" :class="hasNoCards ? 'top--no-cards' : ''">
       <div class="name">
         {{ player.name }}
         <span v-if="store.userNamesWithReductionPoints.includes(player.name)">🙀</span>
@@ -50,7 +50,7 @@ const handlePlayerSaidNoCards = (playerName: string) => {
       <div class="total-points">Total {{ player.totalPoints }}</div>
     </div>
     <div class="bottom">
-      <div class="counter">
+      <div class="counter" v-if="!hasNoCards">
         <ButtonRedesigned :class="{ 'btn-disabled': points < 1 }" :disabled="points < 1"
           @click="onDecrementPoints(player.name)" class="counter-btn">
           <img src="/minus.svg" alt="-" />
@@ -60,14 +60,15 @@ const handlePlayerSaidNoCards = (playerName: string) => {
           <img src="/plus.svg" alt="+" />
         </ButtonRedesigned>
       </div>
+      <div class="counter" v-if="hasNoCards"></div>
 
-      <!-- TODO use different variant for the ghost button -->
-      <ButtonRedesigned class="btn-unactivated" :class="hasNoCards ? 'btn-unactivated--said-gabo' : ''"
+      <ButtonRedesigned class="counter-btn" :variant="hasNoCards ? 'primary' : 'ghost'"
         @click="handlePlayerSaidNoCards(player.name)">
-        No cards
+        🤲
       </ButtonRedesigned>
-      <ButtonRedesigned class="btn-unactivated" :class="saidGabo ? 'btn-unactivated--said-gabo' : ''"
-        @click="handlePlayerSaidGabo(player.name)">
+      <ButtonRedesigned class="counter-btn" :variant="saidGabo ? 'primary' : 'ghost'"
+        @click="handlePlayerSaidGabo(player.name)" :class="hasNoCards ? 'btn-gabo-disabled' : ''"
+        :disabled='hasNoCards'>
         Gabo
       </ButtonRedesigned>
     </div>
@@ -83,6 +84,10 @@ const handlePlayerSaidNoCards = (playerName: string) => {
   display: flex;
   justify-content: space-between;
   font-size: 26px;
+}
+
+.top--no-cards {
+  opacity: 50%;
 }
 
 .name {
@@ -103,36 +108,18 @@ const handlePlayerSaidNoCards = (playerName: string) => {
   justify-content: space-around;
 }
 
-.btn-unactivated {
-  background: none;
-  height: 50px;
-  padding-left: 27px;
-}
-
-.btn-unactivated::after {
-  content: " 👋";
-  visibility: hidden;
-  margin-left: 4px;
-}
-
-.btn-unactivated--said-gabo {
-  background-color: var(--color-white);
-}
-
-.btn-unactivated--said-gabo::after {
-  background: initial;
-  visibility: visible;
-}
-
-.btn-disabled {
-  cursor: default;
-  background: none;
+.counter--no-cards {
+  opacity: 50%;
 }
 
 .counter-btn {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+}
+
+.btn-gabo-disabled {
+  opacity: 50%;
 }
 
 .container {
@@ -142,11 +129,6 @@ const handlePlayerSaidNoCards = (playerName: string) => {
   flex-direction: column;
 }
 
-.saidGabo {
-  opacity: 1;
-}
-
-.total-points {}
 
 .round-points {
   font-size: 32px;
