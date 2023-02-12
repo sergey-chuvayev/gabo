@@ -6,6 +6,7 @@ import PlayerItem from "./PlayerItem.vue";
 import ButtonRedesigned from "./ButtonRedesigned.vue";
 import useSound from "vue-use-sound";
 import endRoundSound from "../assets/endRound.wav";
+import Modal from "./ui/Modal.vue";
 
 const store = useMainStore();
 const [playEndRoundSound] = useSound(endRoundSound);
@@ -16,6 +17,7 @@ const currentRound = computed(() => store.currentRound);
 
 let allPlayersHaveZeroPoints = ref(false);
 let somePlayersHaveNoGabo = ref(false);
+let resetGameModalOpen = ref(false);
 
 const onPlayerSaidGabo = (playerName: string) => {
   store.setPlayerRoundGabo(playerName);
@@ -51,6 +53,11 @@ const checkAllPlayersHaveZeroPoints = () => {
     (value) => value.points === 0
   );
 };
+
+const toggleResetGameModal = () => {
+  resetGameModalOpen.value = !resetGameModalOpen.value;
+};
+
 const checkSomePlayersHaveNoGabo = () => {
   return ![...rounds.value[currentRound.value].values()].find(
     (value) => value.saidGabo
@@ -59,6 +66,27 @@ const checkSomePlayersHaveNoGabo = () => {
 </script>
 
 <template>
+  <Modal
+    :isOpen="resetGameModalOpen"
+    title="Attention"
+    description="En continuant vous allez réinitialiser le jeu et perdre les données de la partie en cours."
+  >
+    <div class="modal-buttons">
+      <ButtonRedesigned
+        type="submit"
+        @click="toggleResetGameModal"
+      >
+        Annuler
+      </ButtonRedesigned>
+      <ButtonRedesigned
+        type="submit"
+        class="mt-2"
+        @click="handleResetGame"
+      >
+        Reset
+      </ButtonRedesigned>
+    </div>
+  </Modal>
   <div class="container">
     <h1 class="game-round-title">Manche {{ currentRound + 1 }}</h1>
     <div class="players-list">
@@ -75,7 +103,11 @@ const checkSomePlayersHaveNoGabo = () => {
     <ButtonRedesigned @click="handleEndRoundClick" class="end-round">
       Prochaine manche
     </ButtonRedesigned>
-    <ButtonRedesigned variant="ghost" @click="handleResetGame" class="mt-2">
+    <ButtonRedesigned
+      variant="ghost"
+      @click="toggleResetGameModal"
+      class="mt-2"
+    >
       Reset game
     </ButtonRedesigned>
     <div v-if="allPlayersHaveZeroPoints || somePlayersHaveNoGabo" class="issue">
@@ -119,5 +151,10 @@ const checkSomePlayersHaveNoGabo = () => {
 .issue {
   margin-top: 20px;
   font-family: "Lancelot";
+}
+
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
 }
 </style>

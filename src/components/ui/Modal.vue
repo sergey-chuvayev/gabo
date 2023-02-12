@@ -2,6 +2,7 @@
 type Props = {
   title: string;
   isOpen: boolean;
+  description: string;
 };
 
 defineProps<Props>();
@@ -10,7 +11,9 @@ defineProps<Props>();
 <template>
   <div v-if="isOpen" class="modal-overlay">
     <div class="modal-wrapper">
-      <div class="title">{{ title }}</div>
+      <h2 class="title">{{ title }}</h2>
+      <div class="description">{{ description }}</div>
+      <div class="buttons"></div>
       <slot></slot>
     </div>
   </div>
