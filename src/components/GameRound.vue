@@ -31,10 +31,10 @@ const handleEndRoundClick = () => {
   }
 };
 
-let isResetGameModalHidden = ref<boolean>(true);
+let isResetGameModalDisplayed = ref<boolean>(false);
 
 watch(router.currentRoute, () => {
-  isResetGameModalHidden.value = true;
+  isResetGameModalDisplayed.value = false;
 });
 
 onBeforeMount(() => {
@@ -49,11 +49,10 @@ watch(currentRound, () => {
 });
 
 const handleResetGame = () => {
-  console.log('resetmodal')
-  isResetGameModalHidden.value = false;
+  isResetGameModalDisplayed.value = true;
 };
 const closeMenu = () => {
-  isResetGameModalHidden.value = true;
+  isResetGameModalDisplayed.value = false;
 };
 const checkAllPlayersHaveZeroPoints = () => {
   return [...rounds.value[currentRound.value].values()].every(
@@ -92,7 +91,7 @@ const checkSomePlayersHaveNoGabo = () => {
       prononcé Gabo
     </div>
   </div>
-  <ResetGameConfirmView @onClose="closeMenu" :isOpen="!isResetGameModalHidden"/>
+  <ResetGameConfirmView @onClose="closeMenu" :isOpen="isResetGameModalDisplayed"/>
 </template>
 
 <style scoped>
