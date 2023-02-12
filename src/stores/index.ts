@@ -92,6 +92,7 @@ export const useMainStore = defineStore({
       const currentRound = this.rounds[this.currentRound];
       currentRound.set(playerName, {
         ...currentRound.get(playerName)!,
+        saidGabo: false,
         hasNoCards: !currentRound.get(playerName)!.hasNoCards,
       });
     },
