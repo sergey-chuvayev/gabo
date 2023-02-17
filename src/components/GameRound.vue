@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { computed, ref, watch, onBeforeMount } from "vue";
-import { useMainStore } from "@/stores";
-import router from "@/router";
-import PlayerItem from "./PlayerItem.vue";
-import ButtonRedesigned from "./ButtonRedesigned.vue";
 import useSound from "vue-use-sound";
+
+import { useMainStore } from "../stores";
+import router from "../router";
+
+import ButtonRedesigned from "../components/ButtonRedesigned.vue";
+import PlayerItem from "./PlayerItem.vue";
+import { Modal } from "./ui/Modal";
+
 import endRoundSound from "../assets/endRound.wav";
-import Modal from "./ui/Modal.vue";
 
 const store = useMainStore();
 const [playEndRoundSound] = useSound(endRoundSound);
@@ -15,9 +18,9 @@ const players = computed(() => store.players);
 const rounds = computed(() => store.rounds);
 const currentRound = computed(() => store.currentRound);
 
-let allPlayersHaveZeroPoints = ref(false);
-let somePlayersHaveNoGabo = ref(false);
-let resetGameModalOpen = ref(false);
+const allPlayersHaveZeroPoints = ref(false);
+const somePlayersHaveNoGabo = ref(false);
+const isResetGameModalOpened = ref(false);
 
 const onPlayerSaidGabo = (playerName: string) => {
   store.setPlayerRoundGabo(playerName);
@@ -32,9 +35,16 @@ const handleEndRoundClick = () => {
   }
 };
 
-const handleResetGame = () => {
-  // show modal first "Are you sure to end and reset the game?"
+const onResetGame = () => {
   store.resetGame();
+};
+
+const handleResetButtonClick = () => {
+  isResetGameModalOpened.value = !isResetGameModalOpened.value;
+};
+
+const handleModalCancelButtonClicked = () => {
+  isResetGameModalOpened.value = false;
 };
 
 onBeforeMount(() => {
@@ -54,10 +64,6 @@ const checkAllPlayersHaveZeroPoints = () => {
   );
 };
 
-const toggleResetGameModal = () => {
-  resetGameModalOpen.value = !resetGameModalOpen.value;
-};
-
 const checkSomePlayersHaveNoGabo = () => {
   return ![...rounds.value[currentRound.value].values()].find(
     (value) => value.saidGabo
@@ -67,22 +73,15 @@ const checkSomePlayersHaveNoGabo = () => {
 
 <template>
   <Modal
-    :isOpen="resetGameModalOpen"
+    :isOpen="isResetGameModalOpened"
     title="Attention"
     description="En continuant vous allez réinitialiser le jeu et perdre les données de la partie en cours."
   >
     <div class="modal-buttons">
-      <ButtonRedesigned
-        type="submit"
-        @click="toggleResetGameModal"
-      >
+      <ButtonRedesigned type="submit" @click="handleModalCancelButtonClicked">
         Annuler
       </ButtonRedesigned>
-      <ButtonRedesigned
-        type="submit"
-        class="mt-2"
-        @click="handleResetGame"
-      >
+      <ButtonRedesigned type="submit" class="mt-2" @click="onResetGame">
         Reset
       </ButtonRedesigned>
     </div>
@@ -105,7 +104,7 @@ const checkSomePlayersHaveNoGabo = () => {
     </ButtonRedesigned>
     <ButtonRedesigned
       variant="ghost"
-      @click="toggleResetGameModal"
+      @click="handleResetButtonClick"
       class="mt-2"
     >
       Reset game
