@@ -16,7 +16,7 @@ const currentRound = computed(() => store.currentRound);
 
 let allPlayersHaveZeroPoints = ref(false);
 let somePlayersHaveNoGabo = ref(false);
-let TwoPlayersOneNoCard = ref(false);
+let twoPlayersOneNoCard = ref(false);
 
 const onPlayerSaidGabo = (playerName: string) => {
   store.setPlayerRoundGabo(playerName);
@@ -25,7 +25,7 @@ const onTogglePlayerSaidNoCards = (playerName: string) => {
   store.setTogglePlayerRoundNoCards(playerName);
 };
 const handleEndRoundClick = () => {
-  TwoPlayersOneNoCard.value = checkConfig2PlayersNoCards();
+  twoPlayersOneNoCard.value = checkConfig2PlayersNoCards();
   if (checkAllPlayersHaveZeroPoints() || checkSomePlayersHaveNoGabo()) {
     somePlayersHaveNoGabo.value = checkSomePlayersHaveNoGabo();
     allPlayersHaveZeroPoints.value = checkAllPlayersHaveZeroPoints();
@@ -49,20 +49,20 @@ onBeforeMount(() => {
 watch(currentRound, () => {
   allPlayersHaveZeroPoints.value = false;
   somePlayersHaveNoGabo.value = false;
-  TwoPlayersOneNoCard.value = false;
+  twoPlayersOneNoCard.value = false;
 });
 
 const checkConfig2PlayersNoCards = () => {
   return Boolean(players.value.length === 2 && [...rounds.value[currentRound.value].values()].find((value) => value.hasNoCards));
 }
 const checkAllPlayersHaveZeroPoints = () => {
-  if (TwoPlayersOneNoCard.value === true) return false;
+  if (twoPlayersOneNoCard.value === true) return false;
   return [...rounds.value[currentRound.value].values()].every(
     (value) => value.points === 0
   );
 };
 const checkSomePlayersHaveNoGabo = () => {
-  if (TwoPlayersOneNoCard.value === true) return false;
+  if (twoPlayersOneNoCard.value === true) return false;
   return ![...rounds.value[currentRound.value].values()].find(
     (value) => value.saidGabo
   );
