@@ -3,7 +3,6 @@ import router from "@/router";
 import { onBeforeMount, ref } from "vue";
 import { useMainStore } from "../stores";
 import ButtonRedesigned from "./ButtonRedesigned.vue";
-import Modal from "./ui/Modal.vue";
 
 const MAX_PLAYERS = 10;
 
