@@ -49,7 +49,10 @@ export const useMainStore = defineStore({
       }));
       const round = new Map(
         this.players.map((player) => {
-          return [player.name, { points: 0, saidGabo: false }];
+          return [
+            player.name,
+            { points: 0, saidGabo: false, hasNoCards: false },
+          ];
         })
       );
       this.rounds = [round];
@@ -59,6 +62,7 @@ export const useMainStore = defineStore({
       currentRound.set(playerName, {
         points: currentRound.get(playerName)!.points + 1,
         saidGabo: currentRound.get(playerName)!.saidGabo,
+        hasNoCards: currentRound.get(playerName)!.hasNoCards,
       });
     },
     decrementPlayerRoundPoints(playerName: string) {
@@ -66,6 +70,7 @@ export const useMainStore = defineStore({
       currentRound.set(playerName, {
         points: currentRound.get(playerName)!.points - 1,
         saidGabo: currentRound.get(playerName)!.saidGabo,
+        hasNoCards: currentRound.get(playerName)!.hasNoCards,
       });
     },
     setPlayerRoundGabo(playerName: string) {
@@ -74,11 +79,21 @@ export const useMainStore = defineStore({
         currentRound.set(key, {
           points: currentRound.get(key)!.points,
           saidGabo: false,
+          hasNoCards: currentRound.get(key)!.hasNoCards,
         });
       });
       currentRound.set(playerName, {
         points: currentRound.get(playerName)!.points,
         saidGabo: true,
+        hasNoCards: currentRound.get(playerName)!.hasNoCards,
+      });
+    },
+    setTogglePlayerRoundNoCards(playerName: string) {
+      const currentRound = this.rounds[this.currentRound];
+      currentRound.set(playerName, {
+        ...currentRound.get(playerName)!,
+        saidGabo: false,
+        hasNoCards: !currentRound.get(playerName)!.hasNoCards,
       });
     },
     endRound() {
@@ -107,7 +122,10 @@ export const useMainStore = defineStore({
       this.currentRound = this.currentRound + 1;
       const round = new Map(
         this.players.map((player) => {
-          return [player.name, { points: 0, saidGabo: false }];
+          return [
+            player.name,
+            { points: 0, saidGabo: false, hasNoCards: false },
+          ];
         })
       );
       this.rounds.push(round);
@@ -122,6 +140,11 @@ export const getPlayerTotalPoints = (
   setUserNameWithReductionPoints: (userName: string) => void
 ) => {
   const playerWithMinimumPoints = getPlayerWithMinimumPoints(currentRound);
+
+  //IF PLAYER HAS NO CARDS IN THIS ROUND THEN IT HAS 0 FOR THE ROUND & THE SAME NUMBER OF POINTS AS BEFORE
+  if (currentRound.get(player.name)?.hasNoCards) {
+    return player.totalPoints || 0;
+  }
 
   // IF PLAYER SAID GABO WITH THE SAME AMOUNT OF POINTS AS OTHER PLAYER APPLY FORMULA: TOTAL POINTS
   const otherPlayersPoints = [...currentRound.entries()]
@@ -164,13 +187,19 @@ export const getPlayerTotalPoints = (
 };
 
 const getPlayerWithMinimumPoints = (round: Round) => {
-  const roundArray: [string, { saidGabo: boolean; points: number }][] = [
-    ...round.entries(),
-  ];
+  const roundArray: [
+    string,
+    { saidGabo: boolean; points: number; hasNoCards: boolean }
+  ][] = [...round.entries()];
 
-  let playerNameWithMinimumPoints = roundArray[0][0];
-  let minimumPoints = roundArray[0][1].points;
-  roundArray.forEach((roundItem) => {
+  // The player who said no cards is not included in the rules to calculate total points
+  const filteredRoundArray = roundArray.filter(
+    (roundItem) => !roundItem[1].hasNoCards
+  );
+
+  let playerNameWithMinimumPoints = filteredRoundArray[0][0];
+  let minimumPoints = filteredRoundArray[0][1].points;
+  filteredRoundArray.forEach((roundItem) => {
     if (roundItem[1].points < minimumPoints) {
       minimumPoints = roundItem[1].points;
       playerNameWithMinimumPoints = roundItem[0];

@@ -3,5 +3,6 @@ export type Round = Map<
   {
     points: number;
     saidGabo: boolean;
+    hasNoCards: boolean;
   }
 >;

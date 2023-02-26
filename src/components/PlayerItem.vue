@@ -12,9 +12,10 @@ type Props = {
   player: Player;
   points: number;
   saidGabo: boolean;
+  hasNoCards: boolean;
 };
 defineProps<Props>();
-const emit = defineEmits(["onPlayerSaidGabo"]);
+const emit = defineEmits(["onPlayerSaidGabo", "onTogglePlayerSaidNoCards"]);
 
 const store = useMainStore();
 const [playUpClick] = useSound(clickUpSound);
@@ -33,43 +34,41 @@ const handlePlayerSaidGabo = (playerName: string) => {
   playSaidGaboSound();
   emit("onPlayerSaidGabo", playerName);
 };
+const handlePlayerSaidNoCards = (playerName: string) => {
+  emit("onTogglePlayerSaidNoCards", playerName);
+};
 </script>
 
 <template>
   <div class="container">
-    <div class="top">
+    <div class="top" :class="hasNoCards ? 'top--no-cards' : ''">
       <div class="name">
         {{ player.name }}
-        <span v-if="store.userNamesWithReductionPoints.includes(player.name)"
-          >🙀</span
-        >
+        <span v-if="store.userNamesWithReductionPoints.includes(player.name)">🙀</span>
       </div>
 
       <div class="total-points">Total {{ player.totalPoints }}</div>
     </div>
     <div class="bottom">
-      <div class="counter">
-        <ButtonRedesigned
-          :class="{ 'btn-disabled': points < 1 }"
-          :disabled="points < 1"
-          @click="onDecrementPoints(player.name)"
-          class="counter-btn"
-        >
+      <div class="counter" v-if="!hasNoCards">
+        <ButtonRedesigned :class="{ 'btn-disabled': points < 1 }" :disabled="points < 1"
+          @click="onDecrementPoints(player.name)" class="counter-btn">
           <img src="/minus.svg" alt="-" />
         </ButtonRedesigned>
         <div class="round-points">{{ points }}</div>
-        <ButtonRedesigned
-          @click="onIncrementPoints(player.name)"
-          class="counter-btn"
-        >
+        <ButtonRedesigned @click="onIncrementPoints(player.name)" class="counter-btn">
           <img src="/plus.svg" alt="+" />
         </ButtonRedesigned>
       </div>
-      <ButtonRedesigned
-        class="btn-unactivated"
-        :class="saidGabo ? 'btn-unactivated--said-gabo' : ''"
-        @click="handlePlayerSaidGabo(player.name)"
-      >
+      <div class="counter" v-if="hasNoCards"></div>
+
+      <ButtonRedesigned class="counter-btn" :variant="hasNoCards ? 'primary' : 'ghost'"
+        @click="handlePlayerSaidNoCards(player.name)">
+        🤲
+      </ButtonRedesigned>
+      <ButtonRedesigned class="counter-btn" :variant="saidGabo ? 'primary' : 'ghost'"
+        @click="handlePlayerSaidGabo(player.name)" :class="hasNoCards ? 'btn-gabo-disabled' : ''"
+        :disabled='hasNoCards'>
         Gabo
       </ButtonRedesigned>
     </div>
@@ -80,47 +79,37 @@ const handlePlayerSaidGabo = (playerName: string) => {
 .container {
   font-family: "Jost";
 }
+
 .top {
   display: flex;
   justify-content: space-between;
   font-size: 26px;
 }
+
+.top--no-cards {
+  opacity: 50%;
+}
+
 .name {
   color: black;
 }
+
 .bottom {
   display: flex;
   justify-content: space-between;
   margin-top: 8px;
   align-items: center;
 }
+
 .counter {
   display: flex;
   align-items: center;
   width: 175px;
   justify-content: space-around;
 }
-.btn-unactivated {
-  background: none;
-  height: 50px;
-  padding-left: 27px;
-}
-.btn-unactivated::after {
-  content: " 👋";
-  visibility: hidden;
-  margin-left: 4px;
-}
-.btn-unactivated--said-gabo {
-  background-color: var(--color-white);
-}
-.btn-unactivated--said-gabo::after {
-  background: initial;
-  visibility: visible;
-}
 
-.btn-disabled {
-  cursor: default;
-  background: none;
+.counter--no-cards {
+  opacity: 50%;
 }
 
 .counter-btn {
@@ -128,6 +117,11 @@ const handlePlayerSaidGabo = (playerName: string) => {
   height: 50px;
   border-radius: 50%;
 }
+
+.btn-gabo-disabled {
+  opacity: 50%;
+}
+
 .container {
   width: 320px;
   margin: 30px auto 0 auto;
@@ -135,11 +129,7 @@ const handlePlayerSaidGabo = (playerName: string) => {
   flex-direction: column;
 }
 
-.saidGabo {
-  opacity: 1;
-}
-.total-points {
-}
+
 .round-points {
   font-size: 32px;
   color: black;

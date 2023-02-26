@@ -18,17 +18,24 @@ const players = computed(() => store.players);
 const rounds = computed(() => store.rounds);
 const currentRound = computed(() => store.currentRound);
 
-const allPlayersHaveZeroPoints = ref(false);
-const somePlayersHaveNoGabo = ref(false);
+
+let allPlayersHaveZeroPoints = ref(false);
+let somePlayersHaveNoGabo = ref(false);
+let twoPlayersOneNoCard = ref(false);
 const isResetGameModalOpened = ref(false);
+
 
 const onPlayerSaidGabo = (playerName: string) => {
   store.setPlayerRoundGabo(playerName);
 };
+const onTogglePlayerSaidNoCards = (playerName: string) => {
+  store.setTogglePlayerRoundNoCards(playerName);
+};
 const handleEndRoundClick = () => {
+  twoPlayersOneNoCard.value = checkConfig2PlayersNoCards();
   if (checkAllPlayersHaveZeroPoints() || checkSomePlayersHaveNoGabo()) {
-    allPlayersHaveZeroPoints.value = checkAllPlayersHaveZeroPoints();
     somePlayersHaveNoGabo.value = checkSomePlayersHaveNoGabo();
+    allPlayersHaveZeroPoints.value = checkAllPlayersHaveZeroPoints();
   } else {
     playEndRoundSound();
     store.endRound();
@@ -56,15 +63,21 @@ onBeforeMount(() => {
 watch(currentRound, () => {
   allPlayersHaveZeroPoints.value = false;
   somePlayersHaveNoGabo.value = false;
+  twoPlayersOneNoCard.value = false;
 });
 
+const checkConfig2PlayersNoCards = () => {
+  return Boolean(players.value.length === 2 && [...rounds.value[currentRound.value].values()].find((value) => value.hasNoCards));
+}
 const checkAllPlayersHaveZeroPoints = () => {
+  if (twoPlayersOneNoCard.value === true) return false;
   return [...rounds.value[currentRound.value].values()].every(
     (value) => value.points === 0
   );
 };
 
 const checkSomePlayersHaveNoGabo = () => {
+  if (twoPlayersOneNoCard.value === true) return false;
   return ![...rounds.value[currentRound.value].values()].find(
     (value) => value.saidGabo
   );
@@ -95,8 +108,10 @@ const checkSomePlayersHaveNoGabo = () => {
           :points="rounds[currentRound].get(player.name)!.points"
           :player="player"
           :saidGabo="rounds[currentRound].get(player.name)!.saidGabo"
+          :hasNoCards="rounds[currentRound].get(player.name)!.hasNoCards"
           @onPlayerSaidGabo="onPlayerSaidGabo"
-        />
+          @onTogglePlayerSaidNoCards="onTogglePlayerSaidNoCards"
+          />
       </div>
     </div>
     <ButtonRedesigned @click="handleEndRoundClick" class="end-round">
@@ -121,6 +136,7 @@ const checkSomePlayersHaveNoGabo = () => {
   font-size: 22px;
   font-family: "Jost";
 }
+
 .container {
   width: 320px;
   margin: 0 auto;
