@@ -19,7 +19,7 @@ import ArticleArea from "../components/ArticleArea.vue";
       <div>
         <h2>Liste des membres :</h2>
         <ul>
-          <li></li>
+          <li class="name">Sarah Guened</li>
         </ul>
       </div>
     </div>
